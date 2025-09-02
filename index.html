@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ParageBragdon - Premium Horse Care Products</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%2372a27f%22>🐎</text></svg>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Global Styles */
@@ -595,6 +596,10 @@
         .cart-item-title {
             font-weight: 600;
             margin-bottom: 5px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
         
         .cart-item-price {
@@ -773,6 +778,54 @@
         textarea.form-control {
             min-height: 150px;
             resize: vertical;
+        }
+        
+        /* Form validation styles */
+        .form-control.error {
+            border-color: #ff6b6b;
+        }
+        
+        .error-message {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .form-submit-feedback {
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .form-submit-feedback.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .form-submit-feedback.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        /* Loading spinner */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+            display: none;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
         
         /* Footer */
@@ -1215,20 +1268,28 @@
                         <div class="form-group">
                             <label for="name">Your Name</label>
                             <input type="text" id="name" class="form-control" required>
+                            <div class="error-message" id="name-error">Please enter your name</div>
                         </div>
                         <div class="form-group">
                             <label for="email">Your Email</label>
                             <input type="email" id="email" class="form-control" required>
+                            <div class="error-message" id="email-error">Please enter a valid email address</div>
                         </div>
                         <div class="form-group">
                             <label for="subject">Subject</label>
                             <input type="text" id="subject" class="form-control" required>
+                            <div class="error-message" id="subject-error">Please enter a subject</div>
                         </div>
                         <div class="form-group">
                             <label for="message">Your Message</label>
                             <textarea id="message" class="form-control" required></textarea>
+                            <div class="error-message" id="message-error">Please enter your message</div>
                         </div>
-                        <button type="submit" class="btn">Send Message</button>
+                        <button type="submit" class="btn" id="submit-button">
+                            <span class="spinner" id="submit-spinner"></span>
+                            Send Message
+                        </button>
+                        <div class="form-submit-feedback" id="form-feedback"></div>
                     </form>
                 </div>
             </div>
@@ -1376,6 +1437,19 @@
         const filterBtns = document.querySelectorAll('.filter-btn');
         const productFilters = document.querySelectorAll('.product-filter');
         const contactForm = document.getElementById('contact-form');
+        
+        // Contact form elements
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const subjectInput = document.getElementById('subject');
+        const messageInput = document.getElementById('message');
+        const nameError = document.getElementById('name-error');
+        const emailError = document.getElementById('email-error');
+        const subjectError = document.getElementById('subject-error');
+        const messageError = document.getElementById('message-error');
+        const submitButton = document.getElementById('submit-button');
+        const submitSpinner = document.getElementById('submit-spinner');
+        const formFeedback = document.getElementById('form-feedback');
         
         // Initialize the page
         function init() {
@@ -1544,12 +1618,136 @@
             
             // Contact form submission
             if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    alert('Thank you for your message! This is a demo form.');
-                    contactForm.reset();
-                });
+                contactForm.addEventListener('submit', handleFormSubmit);
+                
+                // Add input validation
+                nameInput.addEventListener('input', () => validateField(nameInput, nameError, 'Please enter your name'));
+                emailInput.addEventListener('input', () => validateEmailField());
+                subjectInput.addEventListener('input', () => validateField(subjectInput, subjectError, 'Please enter a subject'));
+                messageInput.addEventListener('input', () => validateField(messageInput, messageError, 'Please enter your message'));
             }
+        }
+        
+        // Form validation functions
+        function validateField(field, errorElement, message) {
+            if (field.value.trim() === '') {
+                field.classList.add('error');
+                errorElement.textContent = message;
+                errorElement.style.display = 'block';
+                return false;
+            } else {
+                field.classList.remove('error');
+                errorElement.style.display = 'none';
+                return true;
+            }
+        }
+        
+        function validateEmailField() {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (emailInput.value.trim() === '' || !emailRegex.test(emailInput.value)) {
+                emailInput.classList.add('error');
+                emailError.textContent = 'Please enter a valid email address';
+                emailError.style.display = 'block';
+                return false;
+            } else {
+                emailInput.classList.remove('error');
+                emailError.style.display = 'none';
+                return true;
+            }
+        }
+        
+        function validateForm() {
+            let isValid = true;
+            
+            if (!validateField(nameInput, nameError, 'Please enter your name')) isValid = false;
+            if (!validateEmailField()) isValid = false;
+            if (!validateField(subjectInput, subjectError, 'Please enter a subject')) isValid = false;
+            if (!validateField(messageInput, messageError, 'Please enter your message')) isValid = false;
+            
+            return isValid;
+        }
+        
+        // Form submission handler
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            if (!validateForm()) return;
+            
+            // Show loading state
+            submitSpinner.style.display = 'inline-block';
+            submitButton.disabled = true;
+            
+            // Prepare form data
+            const formData = {
+                name: nameInput.value.trim(),
+                email: emailInput.value.trim(),
+                subject: subjectInput.value.trim(),
+                message: messageInput.value.trim(),
+                timestamp: new Date().toISOString()
+            };
+            
+            // In a real application, you would send this data to a server
+            // For this demo, we'll simulate an API call with a timeout
+            setTimeout(() => {
+                // Hide loading state
+                submitSpinner.style.display = 'none';
+                submitButton.disabled = false;
+                
+                // Show success message
+                formFeedback.textContent = 'Thank you for your message! We will get back to you soon.';
+                formFeedback.classList.remove('error');
+                formFeedback.classList.add('success');
+                formFeedback.style.display = 'block';
+                
+                // Reset form
+                contactForm.reset();
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    formFeedback.style.display = 'none';
+                }, 5000);
+                
+                // In a real application, you would send the data to your server here
+                console.log('Form submitted:', formData);
+                
+                // Example of how you might send the data using fetch:
+                /*
+                fetch('https://your-backend.com/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    submitSpinner.style.display = 'none';
+                    submitButton.disabled = false;
+                    
+                    if (data.success) {
+                        formFeedback.textContent = 'Thank you for your message! We will get back to you soon.';
+                        formFeedback.classList.remove('error');
+                        formFeedback.classList.add('success');
+                        formFeedback.style.display = 'block';
+                        contactForm.reset();
+                    } else {
+                        formFeedback.textContent = 'There was an error sending your message. Please try again.';
+                        formFeedback.classList.remove('success');
+                        formFeedback.classList.add('error');
+                        formFeedback.style.display = 'block';
+                    }
+                })
+                .catch(error => {
+                    submitSpinner.style.display = 'none';
+                    submitButton.disabled = false;
+                    formFeedback.textContent = 'There was an error sending your message. Please try again.';
+                    formFeedback.classList.remove('success');
+                    formFeedback.classList.add('error');
+                    formFeedback.style.display = 'block';
+                });
+                */
+                
+            }, 1500); // Simulate network delay
         }
         
         // Add product to cart
