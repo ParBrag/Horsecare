@@ -3,11 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ParageBragdon - Premium Horse Care Products</title>
+    <title>ParageBragdon - Premium Horse Care Products & Hoof Care Services</title>
+    <meta name="description" content="Premium hoof care products and services for healthier, happier horses. Specialized formulations for hoof health, preventing infections, and overall equine wellness.">
+    <meta name="keywords" content="horse care, hoof care, equine products, horse health, farrier services, hoof trimming">
+    <meta name="author" content="ParageBragdon">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://paragebragdon.com/">
+    <meta property="og:title" content="ParageBragdon - Premium Horse Care Products">
+    <meta property="og:description" content="Premium hoof care products and services for healthier, happier horses.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1547005327-ef75a1397782?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://paragebragdon.com/">
+    <meta property="twitter:title" content="ParageBragdon - Premium Horse Care Products">
+    <meta property="twitter:description" content="Premium hoof care products and services for healthier, happier horses.">
+    <meta property="twitter:image" content="https://images.unsplash.com/photo-1547005327-ef75a1397782?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80">
+    
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%2372a27f%22>🐎</text></svg>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Global Styles */
+        /* Critical CSS (above the fold) */
         :root {
             --primary: #4a7c59;
             --secondary: #8d9f87;
@@ -15,6 +33,7 @@
             --light: #f8f6f0;
             --dark: #2c3e2d;
             --gray: #6c7356;
+            --transition: all 0.3s ease;
         }
         
         * {
@@ -29,65 +48,7 @@
             color: var(--dark);
             background-color: var(--light);
             scroll-behavior: smooth;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        section {
-            padding: 80px 0;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 12px 28px;
-            background: var(--primary);
-            color: white;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn:hover {
-            background: var(--secondary);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-        
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-            font-size: 2.5rem;
-            color: var(--primary);
-            position: relative;
-        }
-        
-        .section-title:after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--accent);
-            margin: 15px auto;
+            transition: var(--transition);
         }
         
         /* Header & Navigation */
@@ -98,7 +59,14 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            transition: background-color 0.3s;
+            transition: var(--transition);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
         
         nav {
@@ -138,11 +106,7 @@
             text-decoration: none;
             color: var(--dark);
             font-weight: 500;
-            transition: color 0.3s ease;
-        }
-        
-        .nav-links a:hover {
-            color: var(--secondary);
+            transition: var(--transition);
         }
         
         .cart-icon {
@@ -185,13 +149,12 @@
         }
         
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
             margin-bottom: 20px;
-            color: white;
         }
         
         .hero p {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
             margin-bottom: 30px;
         }
         
@@ -200,6 +163,543 @@
             justify-content: center;
             gap: 15px;
             margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: var(--primary);
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .btn:hover, .btn:focus {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            outline: none;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover, .btn-outline:focus {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Loading animation for images */
+        .img-loading {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        /* Skip to main content for accessibility */
+        .skip-to-content {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary);
+            color: white;
+            padding: 8px;
+            z-index: 10000;
+            transition: top 0.3s;
+        }
+        
+        .skip-to-content:focus {
+            top: 0;
+        }
+        
+        /* Notification container */
+        #notification-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+        
+        /* Dark mode toggle button */
+        #darkModeToggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            padding: 10px 15px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            transition: var(--transition);
+        }
+        
+        /* Search bar */
+        .search-container {
+            position: relative;
+            margin: 0 auto 30px;
+            max-width: 500px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 12px 45px 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(74, 124, 89, 0.2);
+        }
+        
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--gray);
+            cursor: pointer;
+            padding: 8px;
+        }
+    </style>
+    
+    <!-- Preload critical resources -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://images.unsplash.com">
+    
+    <!-- Structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VeterinaryCare",
+      "name": "ParageBragdon",
+      "description": "Premium hoof care products and services for healthier, happier horses.",
+      "url": "https://paragebragdon.com",
+      "telephone": "+1-514-555-0123",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Terrebonne",
+        "addressRegion": "QC",
+        "addressCountry": "CA"
+      },
+      "areaServed": "Terrebonne, Mascouche, North Shore of Montreal",
+      "serviceType": "Equine hoof care and products"
+    }
+    </script>
+</head>
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+    
+    <!-- Notification container -->
+    <div id="notification-container" aria-live="polite"></div>
+    
+    <!-- Dark mode toggle button -->
+    <button id="darkModeToggle" aria-label="Toggle dark mode">🌙 Dark Mode</button>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo"><i class="fas fa-horse-head"></i>Parage<span>Bragdon</span></a>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li>
+                        <a href="#" class="cart-icon" id="cart-toggle" aria-label="Shopping cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Premium Hoof Care for Your Equine Partners</h1>
+                    <p>Specialized products and services to keep your horses healthy and performing at their best</p>
+                    <div class="hero-buttons">
+                        <a href="#products" class="btn">Shop Products</a>
+                        <a href="#services" class="btn btn-outline">Our Services</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title">About ParageBragdon</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Our Mission</h3>
+                        <p>At ParageBragdon, we're passionate about providing the highest quality hoof care products and services for horses. Our formulations are developed with years of experience in equine care and farriery.</p>
+                        <p>All our products are made with natural ingredients, carefully selected for their effectiveness in promoting hoof health, preventing infections, and supporting overall equine wellness.</p>
+                        <p>We understand that your horse's health is paramount, which is why we've dedicated ourselves to creating solutions that truly work.</p>
+                        <a href="#products" class="btn" style="margin-top: 20px;">Explore Products</a>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1553284965-5dd8352ff1bd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1771&q=80" alt="Horse hoof care" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services">
+            <div class="container">
+                <h2 class="section-title">Our Services</h2>
+                <div class="services-container">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-horse"></i>
+                        </div>
+                        <h3>Physiological Trimming</h3>
+                        <p>I offer physiological trimming services that respect the function of each structure of your horse's hooves.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                        <h3>Hoof Care</h3>
+                        <p>Committed to offering the best for my clients, I've become a distributor of Red Horse products.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h3>Service Areas</h3>
+                        <p>Serving Terrebonne/Mascouche area on the North Shore of Montreal. Remote areas (30min-1h travel) also available.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products" class="products">
+            <div class="container">
+                <h2 class="section-title">Our Products</h2>
+                
+                <!-- Search bar -->
+                <div class="search-container">
+                    <input type="text" class="search-input" id="product-search" placeholder="Search products...">
+                    <button class="search-btn" aria-label="Search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+                <div class="products-filter">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="hoof-care">Hoof Care</button>
+                    <button class="filter-btn" data-filter="treatments">Treatments</button>
+                    <button class="filter-btn" data-filter="cleansers">Cleansers</button>
+                </div>
+                <div class="products-grid" id="products-grid">
+                    <!-- Products will be added here dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="gallery">
+            <div class="container">
+                <h2 class="section-title">Product Gallery</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Artimud 300g" loading="lazy">
+                        <div class="gallery-caption">Artimud 300g</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Artimud 750g" loading="lazy">
+                        <div class="gallery-caption">Artimud 750g</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Hoof Stuff" loading="lazy">
+                        <div class="gallery-caption">Hoof Stuff</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Field Paste" loading="lazy">
+                        <div class="gallery-caption">Field Paste</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="HoneyHeel" loading="lazy">
+                        <div class="gallery-caption">HoneyHeel</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Sole Cleanse" loading="lazy">
+                        <div class="gallery-caption">Sole Cleanse</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Stronghorn" loading="lazy">
+                        <div class="gallery-caption">Stronghorn</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Ear Balm" loading="lazy">
+                        <div class="gallery-caption">Ear Balm</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="testimonials">
+            <div class="container">
+                <h2 class="section-title">What Our Customers Say</h2>
+                <div class="testimonials-container">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            "The Artimud product completely transformed my horse's hoof health. After just a few applications, I noticed significant improvement in the texture and strength of the hooves. Highly recommend!"
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-image">
+                                SM
+                            </div>
+                            <div class="author-details">
+                                <h4>Sarah Mitchell</h4>
+                                <p>Professional Equestrian</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            "As a farrier with over 20 years of experience, I'm very selective about the products I use. ParageBragdon's Field Paste is now a staple in my practice. It's effective, natural, and horses respond well to it."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-image">
+                                JR
+                            </div>
+                            <div class="author-details">
+                                <h4>James Richardson</h4>
+                                <p>Certified Farrier</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            "I've tried countless hoof care products for my competition horses, and HoneyHeel is by far the best. It's helped heal stubborn cracks and keeps their hooves in top condition throughout the season."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-image">
+                                ED
+                            </div>
+                            <div class="author-details">
+                                <h4>Emma Dubois</h4>
+                                <p>Dressage Competitor</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h3>We'd Love to Hear From You</h3>
+                        <p>Have questions about our products or need advice on hoof care? Contact us for expert guidance.</p>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Service Area</h4>
+                                <p>Terrebonne/Mascouche, North Shore of Montreal</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>Available upon request</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4>Email</h4>
+                                <p>gabrielle.bragdon@hotmail.ca</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div>
+                                <h4>Pricing</h4>
+                                <p>$55 for local service, $65 for remote areas (30min-1h travel)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" class="form-control" required>
+                                <div class="error-message" id="name-error">Please enter your name</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Your Email</label>
+                                <input type="email" id="email" class="form-control" required>
+                                <div class="error-message" id="email-error">Please enter a valid email address</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" class="form-control" required>
+                                <div class="error-message" id="subject-error">Please enter a subject</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Your Message</label>
+                                <textarea id="message" class="form-control" required></textarea>
+                                <div class="error-message" id="message-error">Please enter your message</div>
+                            </div>
+                            <button type="submit" class="btn" id="submit-btn">
+                                <span id="submit-text">Send Message</span>
+                                <span id="submit-loading" style="display:none;"><span class="loading-spinner"></span> Sending...</span>
+                            </button>
+                            <div class="form-submit-message" id="submit-success">
+                                Thank you for your message! We'll get back to you soon.
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo"><i class="fas fa-horse-head"></i>Parage<span>Bragdon</span></div>
+                    <p>Providing premium hoof care products and services for healthier, happier horses.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/gabrielle.bragdon" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Products</h3>
+                    <ul>
+                        <li><a href="#" class="product-filter" data-filter="hoof-care">Hoof Care</a></li>
+                        <li><a href="#" class="product-filter" data-filter="treatments">Treatments</a></li>
+                        <li><a href="#" class="product-filter" data-filter="cleansers">Cleansers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 ParageBragdon. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Product Details Modal -->
+    <div class="modal-overlay" id="product-modal">
+        <div class="product-modal">
+            <button class="close-modal" id="close-modal" aria-label="Close modal"><i class="fas fa-times"></i></button>
+            <div class="modal-content" id="modal-content">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="close-cart" id="close-cart" aria-label="Close cart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be added here dynamically -->
+        </div>
+        <div class="cart-total" id="cart-total">Total: $0.00</div>
+        <button class="checkout-btn" id="checkout-btn">Proceed to Checkout</button>
+    </div>
+
+    <!-- Non-critical CSS -->
+    <style>
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            margin: 15px auto;
         }
         
         /* About Section */
@@ -281,7 +781,7 @@
             border: 1px solid #ddd;
             border-radius: 30px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
         
         .filter-btn.active, .filter-btn:hover {
@@ -376,7 +876,7 @@
             z-index: 2000;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
         
         .modal-overlay.active {
@@ -444,7 +944,7 @@
             font-weight: bold;
             color: var(--dark);
             margin-bottom: 20px;
-}
+        }
         
         .modal-description {
             margin-bottom: 20px;
@@ -782,12 +1282,13 @@
             border-radius: 5px;
             font-family: inherit;
             font-size: 1rem;
-            transition: border-color 0.3s;
+            transition: var(--transition);
         }
         
         .form-control:focus {
             outline: none;
             border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(74, 124, 89, 0.2);
         }
         
         .form-control.error {
@@ -869,7 +1370,7 @@
             background: rgba(255,255,255,0.1);
             border-radius: 50%;
             color: white;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
         
         .social-link:hover {
@@ -937,35 +1438,6 @@
             to { transform: rotate(360deg); }
         }
         
-        /* Notification container */
-        #notification-container {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 9999;
-        }
-        
-        /* Dark mode toggle button */
-        #darkModeToggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 9999;
-            padding: 10px 15px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-        }
-        
-        #darkModeToggle:hover {
-            background: var(--secondary);
-            transform: translateY(-3px);
-        }
-        
         /* Dark mode styles */
         body.dark-mode {
             background-color: #222;
@@ -1022,10 +1494,6 @@
                 grid-template-columns: 1fr;
             }
             
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-            
             .cart-sidebar {
                 width: 350px;
             }
@@ -1063,10 +1531,6 @@
                 align-items: center;
             }
             
-            .section-title {
-                font-size: 2rem;
-            }
-            
             .cart-sidebar {
                 width: 100%;
                 right: -100%;
@@ -1090,10 +1554,6 @@
         }
         
         @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
             .section-title {
                 font-size: 1.8rem;
             }
@@ -1115,360 +1575,6 @@
             }
         }
     </style>
-</head>
-<body>
-    <!-- Notification container -->
-    <div id="notification-container"></div>
-    
-    <!-- Dark mode toggle button -->
-    <button id="darkModeToggle" aria-label="Toggle dark mode">🌙 Dark Mode</button>
-
-    <!-- Header & Navigation -->
-    <header>
-        <div class="container">
-            <nav>
-                <a href="#" class="logo"><i class="fas fa-horse-head"></i>Parage<span>Bragdon</span></a>
-                <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#products">Products</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li>
-                        <a href="#" class="cart-icon" id="cart-toggle" aria-label="Shopping cart">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span class="cart-count">0</span>
-                        </a>
-                    </li>
-                </ul>
-                <div class="hamburger">
-                    <i class="fas fa-bars"></i>
-                </div>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Product Details Modal -->
-    <div class="modal-overlay" id="product-modal">
-        <div class="product-modal">
-            <button class="close-modal" id="close-modal" aria-label="Close modal"><i class="fas fa-times"></i></button>
-            <div class="modal-content" id="modal-content">
-                <!-- Content will be populated by JavaScript -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Cart Sidebar -->
-    <div class="cart-overlay" id="cart-overlay"></div>
-    <div class="cart-sidebar" id="cart-sidebar">
-        <div class="cart-header">
-            <h2>Your Cart</h2>
-            <button class="close-cart" id="close-cart" aria-label="Close cart"><i class="fas fa-times"></i></button>
-        </div>
-        <div class="cart-items" id="cart-items">
-            <!-- Cart items will be added here dynamically -->
-        </div>
-        <div class="cart-total" id="cart-total">Total: $0.00</div>
-        <button class="checkout-btn" id="checkout-btn">Proceed to Checkout</button>
-    </div>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Premium Hoof Care for Your Equine Partners</h1>
-                <p>Specialized products and services to keep your horses healthy and performing at their best</p>
-                <div class="hero-buttons">
-                    <a href="#products" class="btn">Shop Products</a>
-                    <a href="#services" class="btn btn-outline">Our Services</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">About ParageBragdon</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>At ParageBragdon, we're passionate about providing the highest quality hoof care products and services for horses. Our formulations are developed with years of experience in equine care and farriery.</p>
-                    <p>All our products are made with natural ingredients, carefully selected for their effectiveness in promoting hoof health, preventing infections, and supporting overall equine wellness.</p>
-                    <p>We understand that your horse's health is paramount, which is why we've dedicated ourselves to creating solutions that truly work.</p>
-                    <a href="#products" class="btn" style="margin-top: 20px;">Explore Products</a>
-                </div>
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1553284965-5dd8352ff1bd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1771&q=80" alt="Horse hoof care" loading="lazy">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <h2 class="section-title">Our Services</h2>
-            <div class="services-container">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-horse"></i>
-                    </div>
-                    <h3>Physiological Trimming</h3>
-                    <p>I offer physiological trimming services that respect the function of each structure of your horse's hooves.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-hand-holding-heart"></i>
-                    </div>
-                    <h3>Hoof Care</h3>
-                    <p>Committed to offering the best for my clients, I've become a distributor of Red Horse products.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-truck"></i>
-                    </div>
-                    <h3>Service Areas</h3>
-                    <p>Serving Terrebonne/Mascouche area on the North Shore of Montreal. Remote areas (30min-1h travel) also available.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Products Section -->
-    <section id="products" class="products">
-        <div class="container">
-            <h2 class="section-title">Our Products</h2>
-            <div class="products-filter">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="hoof-care">Hoof Care</button>
-                <button class="filter-btn" data-filter="treatments">Treatments</button>
-                <button class="filter-btn" data-filter="cleansers">Cleansers</button>
-            </div>
-            <div class="products-grid" id="products-grid">
-                <!-- Products will be added here dynamically -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery">
-        <div class="container">
-            <h2 class="section-title">Product Gallery</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Artimud 300g" loading="lazy">
-                    <div class="gallery-caption">Artimud 300g</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Artimud 750g" loading="lazy">
-                    <div class="gallery-caption">Artimud 750g</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Hoof Stuff" loading="lazy">
-                    <div class="gallery-caption">Hoof Stuff</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Field Paste" loading="lazy">
-                    <div class="gallery-caption">Field Paste</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="HoneyHeel" loading="lazy">
-                    <div class="gallery-caption">HoneyHeel</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Sole Cleanse" loading="lazy">
-                    <div class="gallery-caption">Sole Cleanse</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Stronghorn" loading="lazy">
-                    <div class="gallery-caption">Stronghorn</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Ear Balm" loading="lazy">
-                    <div class="gallery-caption">Ear Balm</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials">
-        <div class="container">
-            <h2 class="section-title">What Our Customers Say</h2>
-            <div class="testimonials-container">
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        "The Artimud product completely transformed my horse's hoof health. After just a few applications, I noticed significant improvement in the texture and strength of the hooves. Highly recommend!"
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-image">
-                            SM
-                        </div>
-                        <div class="author-details">
-                            <h4>Sarah Mitchell</h4>
-                            <p>Professional Equestrian</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        "As a farrier with over 20 years of experience, I'm very selective about the products I use. ParageBragdon's Field Paste is now a staple in my practice. It's effective, natural, and horses respond well to it."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-image">
-                            JR
-                        </div>
-                        <div class="author-details">
-                            <h4>James Richardson</h4>
-                            <p>Certified Farrier</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        "I've tried countless hoof care products for my competition horses, and HoneyHeel is by far the best. It's helped heal stubborn cracks and keeps their hooves in top condition throughout the season."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-image">
-                            ED
-                        </div>
-                        <div class="author-details">
-                            <h4>Emma Dubois</h4>
-                            <p>Dressage Competitor</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>We'd Love to Hear From You</h3>
-                    <p>Have questions about our products or need advice on hoof care? Contact us for expert guidance.</p>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div>
-                            <h4>Service Area</h4>
-                            <p>Terrebonne/Mascouche, North Shore of Montreal</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div>
-                            <h4>Phone</h4>
-                            <p>Available upon request</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div>
-                            <h4>Email</h4>
-                            <p>gabrielle.bragdon@hotmail.ca</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-dollar-sign"></i>
-                        </div>
-                        <div>
-                            <h4>Pricing</h4>
-                            <p>$55 for local service, $65 for remote areas (30min-1h travel)</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <form id="contact-form">
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" class="form-control" required>
-                            <div class="error-message" id="name-error">Please enter your name</div>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Your Email</label>
-                            <input type="email" id="email" class="form-control" required>
-                            <div class="error-message" id="email-error">Please enter a valid email address</div>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" class="form-control" required>
-                            <div class="error-message" id="subject-error">Please enter a subject</div>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Your Message</label>
-                            <textarea id="message" class="form-control" required></textarea>
-                            <div class="error-message" id="message-error">Please enter your message</div>
-                        </div>
-                        <button type="submit" class="btn" id="submit-btn">
-                            <span id="submit-text">Send Message</span>
-                            <span id="submit-loading" style="display:none;"><span class="loading-spinner"></span> Sending...</span>
-                        </button>
-                        <div class="form-submit-message" id="submit-success">
-                            Thank you for your message! We'll get back to you soon.
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-about">
-                    <div class="footer-logo"><i class="fas fa-horse-head"></i>Parage<span>Bragdon</span></div>
-                    <p>Providing premium hoof care products and services for healthier, happier horses.</p>
-                    <div class="social-links">
-                        <a href="https://www.facebook.com/gabrielle.bragdon" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                <div class="footer-links">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#products">Products</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h3>Products</h3>
-                    <ul>
-                        <li><a href="#" class="product-filter" data-filter="hoof-care">Hoof Care</a></li>
-                        <li><a href="#" class="product-filter" data-filter="treatments">Treatments</a></li>
-                        <li><a href="#" class="product-filter" data-filter="cleansers">Cleansers</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h3>Support</h3>
-                    <ul>
-                        <li><a href="#">Shipping & Returns</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2023 ParageBragdon. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
 
     <script>
         // Product data with complete details and image paths
@@ -1517,7 +1623,7 @@
                 price: 25.00,
                 description: "HoneyHeel 100ml is a honey-based ointment to treat infections.",
                 fullDescription: "HoneyHeel est un produit à base de miel, de minéraux naturels, de jus d'aloe vera et d'agents naturels qui rallentissent la cristallisation du miel. C'est une crème riche et apaisante qui offre une barrière protectrice sur les blessures mineures et favorise le processus naturel de cicatrisation.",
-                usage: "Les ingrédients de Honeyheel favorisent la formation naturelle de tissus sains. Sa consistance collante l'aide à rester en place, permettant aux agents actifs de rester en contact avec la peau. Peut être utiliser pour traiter la gale de boue, comme écran solaire, pour soigner des blessures mineures, etc. Note : Le miel pourrait se cristalliser, si cela arrive, réchauffer un peu le produit et mélanger.",
+                usage: "Les ingrédients de Honeyheel favorisent la formation naturelle de tissus sains. Sa consistance collante l'aide à rester en place, permettant aux agents actifs de rester en contact avec la peau. Peut être utiliser pour traiter la gale de boue, comme écran solaire, for soigner des blessures mineures, etc. Note : Le miel pourrait se cristalliser, si cela arrive, réchauffer un peu le produit et mélanger.",
                 image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
                 category: "treatments"
             },
@@ -1571,6 +1677,7 @@
         const submitLoading = document.getElementById('submit-loading');
         const submitSuccess = document.getElementById('submit-success');
         const darkModeToggle = document.getElementById('darkModeToggle');
+        const productSearch = document.getElementById('product-search');
         
         // Initialize the page
         function init() {
@@ -1614,12 +1721,32 @@
         }
         
         // Render products to the page
-        function renderProducts(filter = 'all') {
+        function renderProducts(filter = 'all', searchTerm = '') {
             productsGrid.innerHTML = '';
             
-            for (const [name, data] of Object.entries(productData)) {
-                if (filter !== 'all' && data.category !== filter) continue;
-                
+            let productsToShow = Object.entries(productData);
+            
+            // Apply filter
+            if (filter !== 'all') {
+                productsToShow = productsToShow.filter(([name, data]) => data.category === filter);
+            }
+            
+            // Apply search
+            if (searchTerm) {
+                const term = searchTerm.toLowerCase();
+                productsToShow = productsToShow.filter(([name, data]) => 
+                    name.toLowerCase().includes(term) || 
+                    data.description.toLowerCase().includes(term) ||
+                    data.category.toLowerCase().includes(term)
+                );
+            }
+            
+            if (productsToShow.length === 0) {
+                productsGrid.innerHTML = '<div class="no-products"><p>No products found. Try a different search term.</p></div>';
+                return;
+            }
+            
+            for (const [name, data] of productsToShow) {
                 const productCard = document.createElement('div');
                 productCard.className = 'product-card';
                 
@@ -1757,7 +1884,8 @@
                     filterBtns.forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
                     const filter = this.getAttribute('data-filter');
-                    renderProducts(filter);
+                    const searchTerm = productSearch.value;
+                    renderProducts(filter, searchTerm);
                 });
             });
             
@@ -1766,9 +1894,20 @@
                 filter.addEventListener('click', function(e) {
                     e.preventDefault();
                     const filterValue = this.getAttribute('data-filter');
+                    // Update active filter button
+                    filterBtns.forEach(btn => {
+                        btn.classList.toggle('active', btn.getAttribute('data-filter') === filterValue);
+                    });
                     renderProducts(filterValue);
                     window.scrollTo({ top: document.getElementById('products').offsetTop - 100, behavior: 'smooth' });
                 });
+            });
+            
+            // Product search
+            productSearch.addEventListener('input', function() {
+                const searchTerm = this.value;
+                const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
+                renderProducts(activeFilter, searchTerm);
             });
             
             // Contact form submission
