@@ -29,6 +29,7 @@
             color: var(--dark);
             background-color: var(--light);
             scroll-behavior: smooth;
+            transition: background-color 0.3s, color 0.3s;
         }
         
         .container {
@@ -97,6 +98,7 @@
             width: 100%;
             top: 0;
             z-index: 1000;
+            transition: background-color 0.3s;
         }
         
         nav {
@@ -935,6 +937,81 @@
             to { transform: rotate(360deg); }
         }
         
+        /* Notification container */
+        #notification-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+        
+        /* Dark mode toggle button */
+        #darkModeToggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            padding: 10px 15px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        #darkModeToggle:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        /* Dark mode styles */
+        body.dark-mode {
+            background-color: #222;
+            color: #eee;
+        }
+        
+        body.dark-mode header,
+        body.dark-mode .service-card,
+        body.dark-mode .product-card,
+        body.dark-mode .testimonial-card,
+        body.dark-mode .contact-form,
+        body.dark-mode .product-modal,
+        body.dark-mode .cart-sidebar {
+            background-color: #333;
+            color: #eee;
+        }
+        
+        body.dark-mode header {
+            box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+        }
+        
+        body.dark-mode .section-title {
+            color: #ccc;
+        }
+        
+        body.dark-mode .nav-links a,
+        body.dark-mode .footer-links a,
+        body.dark-mode .product-title,
+        body.dark-mode .modal-details h2 {
+            color: #ccc;
+        }
+        
+        body.dark-mode .services {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        }
+        
+        body.dark-mode .form-control {
+            background-color: #444;
+            color: #eee;
+            border-color: #555;
+        }
+        
+        body.dark-mode footer {
+            background-color: #111;
+        }
+        
         /* Responsive Design */
         @media (max-width: 992px) {
             .about-content {
@@ -1006,6 +1083,10 @@
             .modal-actions {
                 flex-direction: column;
             }
+            
+            body.dark-mode .nav-links {
+                background-color: #333;
+            }
         }
         
         @media (max-width: 480px) {
@@ -1025,10 +1106,23 @@
                 padding: 10px 15px;
                 font-size: 0.9rem;
             }
+            
+            #darkModeToggle {
+                bottom: 70px;
+                right: 15px;
+                font-size: 0.8rem;
+                padding: 8px 12px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Notification container -->
+    <div id="notification-container"></div>
+    
+    <!-- Dark mode toggle button -->
+    <button id="darkModeToggle" aria-label="Toggle dark mode">🌙 Dark Mode</button>
+
     <!-- Header & Navigation -->
     <header>
         <div class="container">
@@ -1043,7 +1137,7 @@
                     <li><a href="#testimonials">Testimonials</a></li>
                     <li><a href="#contact">Contact</a></li>
                     <li>
-                        <a href="#" class="cart-icon" id="cart-toggle">
+                        <a href="#" class="cart-icon" id="cart-toggle" aria-label="Shopping cart">
                             <i class="fas fa-shopping-cart"></i>
                             <span class="cart-count">0</span>
                         </a>
@@ -1059,7 +1153,7 @@
     <!-- Product Details Modal -->
     <div class="modal-overlay" id="product-modal">
         <div class="product-modal">
-            <button class="close-modal" id="close-modal"><i class="fas fa-times"></i></button>
+            <button class="close-modal" id="close-modal" aria-label="Close modal"><i class="fas fa-times"></i></button>
             <div class="modal-content" id="modal-content">
                 <!-- Content will be populated by JavaScript -->
             </div>
@@ -1071,7 +1165,7 @@
     <div class="cart-sidebar" id="cart-sidebar">
         <div class="cart-header">
             <h2>Your Cart</h2>
-            <button class="close-cart" id="close-cart"><i class="fas fa-times"></i></button>
+            <button class="close-cart" id="close-cart" aria-label="Close cart"><i class="fas fa-times"></i></button>
         </div>
         <div class="cart-items" id="cart-items">
             <!-- Cart items will be added here dynamically -->
@@ -1107,7 +1201,7 @@
                     <a href="#products" class="btn" style="margin-top: 20px;">Explore Products</a>
                 </div>
                 <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1553284965-5dd8352ff1bd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1771&q=80" alt="Horse hoof care">
+                    <img src="https://images.unsplash.com/photo-1553284965-5dd8352ff1bd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1771&q=80" alt="Horse hoof care" loading="lazy">
                 </div>
             </div>
         </div>
@@ -1165,35 +1259,35 @@
             <h2 class="section-title">Product Gallery</h2>
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="images/Artimud_300g.png" alt="Artimud 300g">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Artimud 300g" loading="lazy">
                     <div class="gallery-caption">Artimud 300g</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Artimud 750g">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Artimud 750g" loading="lazy">
                     <div class="gallery-caption">Artimud 750g</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Hoof Stuff">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Hoof Stuff" loading="lazy">
                     <div class="gallery-caption">Hoof Stuff</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Field Paste">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Field Paste" loading="lazy">
                     <div class="gallery-caption">Field Paste</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="HoneyHeel">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="HoneyHeel" loading="lazy">
                     <div class="gallery-caption">HoneyHeel</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Sole Cleanse">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Sole Cleanse" loading="lazy">
                     <div class="gallery-caption">Sole Cleanse</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Stronghorn">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Stronghorn" loading="lazy">
                     <div class="gallery-caption">Stronghorn</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Ear Balm">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Ear Balm" loading="lazy">
                     <div class="gallery-caption">Ear Balm</div>
                 </div>
             </div>
@@ -1339,8 +1433,8 @@
                     <div class="footer-logo"><i class="fas fa-horse-head"></i>Parage<span>Bragdon</span></div>
                     <p>Providing premium hoof care products and services for healthier, happier horses.</p>
                     <div class="social-links">
-                        <a href="https://www.facebook.com/gabrielle.bragdon" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/gabrielle.bragdon" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 <div class="footer-links">
@@ -1453,8 +1547,8 @@
             }
         };
 
-        // Cart functionality
-        let cart = [];
+        // Load cart from localStorage
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
         
         // DOM Elements
         const productsGrid = document.getElementById('products-grid');
@@ -1476,12 +1570,47 @@
         const submitText = document.getElementById('submit-text');
         const submitLoading = document.getElementById('submit-loading');
         const submitSuccess = document.getElementById('submit-success');
+        const darkModeToggle = document.getElementById('darkModeToggle');
         
         // Initialize the page
         function init() {
             renderProducts();
             setupEventListeners();
             updateCartCount();
+            checkDarkModePreference();
+        }
+        
+        // Save cart to localStorage
+        function saveCart() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+        
+        // Show notification function
+        function showNotification(message, type = 'info') {
+            const container = document.getElementById('notification-container');
+            const notif = document.createElement('div');
+            notif.style.padding = '10px 20px';
+            notif.style.backgroundColor = type === 'error' ? '#e74c3c' : '#2ecc71';
+            notif.style.color = '#fff';
+            notif.style.marginBottom = '10px';
+            notif.style.borderRadius = '5px';
+            notif.style.boxShadow = '0 3px 10px rgba(0,0,0,0.2)';
+            notif.innerText = message;
+            container.appendChild(notif);
+            setTimeout(() => {
+                if (container.contains(notif)) {
+                    container.removeChild(notif);
+                }
+            }, 3000);
+        }
+        
+        // Check dark mode preference
+        function checkDarkModePreference() {
+            const darkMode = localStorage.getItem('darkMode') === 'true';
+            if (darkMode) {
+                document.body.classList.add('dark-mode');
+                darkModeToggle.textContent = '☀️ Light Mode';
+            }
         }
         
         // Render products to the page
@@ -1508,8 +1637,8 @@
                         <div class="product-price">$${data.price.toFixed(2)}</div>
                         <p class="product-description">${data.description}</p>
                         <div class="product-actions">
-                            <button class="btn add-to-cart" data-name="${name}" data-price="${data.price}">Add to Cart</button>
-                            <button class="btn btn-outline view-details" data-name="${name}">Details</button>
+                            <button class="btn add-to-cart" data-name="${name}" data-price="${data.price}" aria-label="Add ${name} to cart">Add to Cart</button>
+                            <button class="btn btn-outline view-details" data-name="${name}" aria-label="View details for ${name}">Details</button>
                         </div>
                     </div>
                 `;
@@ -1542,7 +1671,7 @@
                         <p>${product.usage}</p>
                     </div>
                     <div class="modal-actions">
-                        <button class="btn add-to-cart-modal" data-name="${name}" data-price="${product.price}">Add to Cart</button>
+                        <button class="btn add-to-cart-modal" data-name="${name}" data-price="${product.price}" aria-label="Add ${name} to cart">Add to Cart</button>
                     </div>
                 </div>
             `;
@@ -1589,7 +1718,7 @@
                 }
             });
             
-            // Add to cart buttons
+            // Event delegation for add to cart and view details buttons
             document.addEventListener('click', function(e) {
                 if (e.target.classList.contains('add-to-cart')) {
                     const name = e.target.getAttribute('data-name');
@@ -1606,11 +1735,11 @@
             // Checkout button
             checkoutBtn.addEventListener('click', function() {
                 if (cart.length === 0) {
-                    alert('Your cart is empty!');
+                    showNotification('Your cart is empty!', 'error');
                     return;
                 }
                 
-                alert('Thank you for your order! This is a demo store, so no actual order was placed.');
+                showNotification('Thank you for your order! This is a demo store.', 'success');
                 cart = [];
                 updateCart();
                 cartSidebar.classList.remove('active');
@@ -1647,56 +1776,21 @@
                 contactForm.addEventListener('submit', function(e) {
                     e.preventDefault();
                     
-                    // Validate form
-                    const nameInput = document.getElementById('name');
-                    const emailInput = document.getElementById('email');
-                    const subjectInput = document.getElementById('subject');
-                    const messageInput = document.getElementById('message');
-                    
-                    let isValid = true;
-                    
-                    // Name validation
-                    if (!nameInput.value.trim()) {
-                        document.getElementById('name-error').classList.add('show');
-                        nameInput.classList.add('error');
-                        isValid = false;
-                    } else {
-                        document.getElementById('name-error').classList.remove('show');
-                        nameInput.classList.remove('error');
+                    const name = document.getElementById('name').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const subject = document.getElementById('subject').value.trim();
+                    const message = document.getElementById('message').value.trim();
+
+                    if (!name || !email || !subject || !message) {
+                        showNotification('Please fill in all fields', 'error');
+                        return;
                     }
                     
-                    // Email validation
-                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    if (!emailInput.value.trim() || !emailRegex.test(emailInput.value)) {
-                        document.getElementById('email-error').classList.add('show');
-                        emailInput.classList.add('error');
-                        isValid = false;
-                    } else {
-                        document.getElementById('email-error').classList.remove('show');
-                        emailInput.classList.remove('error');
+                    // Basic email validation
+                    if (!/\S+@\S+\.\S+/.test(email)) {
+                        showNotification('Please enter a valid email', 'error');
+                        return;
                     }
-                    
-                    // Subject validation
-                    if (!subjectInput.value.trim()) {
-                        document.getElementById('subject-error').classList.add('show');
-                        subjectInput.classList.add('error');
-                        isValid = false;
-                    } else {
-                        document.getElementById('subject-error').classList.remove('show');
-                        subjectInput.classList.remove('error');
-                    }
-                    
-                    // Message validation
-                    if (!messageInput.value.trim()) {
-                        document.getElementById('message-error').classList.add('show');
-                        messageInput.classList.add('error');
-                        isValid = false;
-                    } else {
-                        document.getElementById('message-error').classList.remove('show');
-                        messageInput.classList.remove('error');
-                    }
-                    
-                    if (!isValid) return;
                     
                     // Show loading state
                     submitText.style.display = 'none';
@@ -1709,18 +1803,25 @@
                         submitLoading.style.display = 'none';
                         
                         // Show success message
-                        submitSuccess.classList.add('show');
+                        showNotification('Thank you for your message! We\'ll get back to you soon.', 'success');
                         
                         // Reset form
                         contactForm.reset();
-                        
-                        // Hide success message after 5 seconds
-                        setTimeout(() => {
-                            submitSuccess.classList.remove('show');
-                        }, 5000);
                     }, 1500);
                 });
             }
+            
+            // Dark mode toggle
+            darkModeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                if (document.body.classList.contains('dark-mode')) {
+                    darkModeToggle.textContent = '☀️ Light Mode';
+                    localStorage.setItem('darkMode', 'true');
+                } else {
+                    darkModeToggle.textContent = '🌙 Dark Mode';
+                    localStorage.setItem('darkMode', 'false');
+                }
+            });
         }
         
         // Add product to cart
@@ -1738,9 +1839,7 @@
             }
             
             updateCart();
-            
-            // Show confirmation
-            alert(`${name} added to cart!`);
+            showNotification(`${name} added to cart!`, 'success');
         }
         
         // Update cart UI
@@ -1770,10 +1869,10 @@
                         <div class="cart-item-title">${item.name}</div>
                         <div class="cart-item-price">$${item.price.toFixed(2)}</div>
                         <div class="cart-item-quantity">
-                            <button class="quantity-btn decrease-qty" data-index="${index}">-</button>
+                            <button class="quantity-btn decrease-qty" data-index="${index}" aria-label="Decrease quantity">-</button>
                             <input type="number" class="quantity-input" value="${item.quantity}" min="1" data-index="${index}">
-                            <button class="quantity-btn increase-qty" data-index="${index}">+</button>
-                            <button class="remove-item" data-index="${index}"><i class="fas fa-trash"></i></button>
+                            <button class="quantity-btn increase-qty" data-index="${index}" aria-label="Increase quantity">+</button>
+                            <button class="remove-item" data-index="${index}" aria-label="Remove item"><i class="fas fa-trash"></i></button>
                         </div>
                     </div>
                 `;
@@ -1787,7 +1886,10 @@
             // Update cart count
             updateCartCount();
             
-            // Add event listeners to quantity buttons
+            // Save cart to localStorage
+            saveCart();
+            
+            // Add event listeners to quantity buttons using event delegation
             document.querySelectorAll('.decrease-qty').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const index = parseInt(this.getAttribute('data-index'));
@@ -1821,8 +1923,10 @@
             document.querySelectorAll('.remove-item').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const index = parseInt(this.getAttribute('data-index'));
+                    const itemName = cart[index].name;
                     cart.splice(index, 1);
                     updateCart();
+                    showNotification(`${itemName} removed from cart`, 'info');
                 });
             });
         }
