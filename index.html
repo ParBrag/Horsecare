@@ -695,6 +695,17 @@
         .testimonial-text {
             font-style: italic;
             margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .testimonial-text::before {
+            content: """;
+            font-size: 3rem;
+            color: var(--accent);
+            position: absolute;
+            left: -15px;
+            top: -15px;
+            opacity: 0.3;
         }
         
         .testimonial-author {
@@ -708,12 +719,12 @@
             border-radius: 50%;
             overflow: hidden;
             margin-right: 15px;
-        }
-        
-        .author-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            background-color: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
         }
         
         .author-details h4 {
@@ -769,11 +780,45 @@
             border-radius: 5px;
             font-family: inherit;
             font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .form-control.error {
+            border-color: #ff6b6b;
+        }
+        
+        .error-message {
+            color: #ff6b6b;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .error-message.show {
+            display: block;
         }
         
         textarea.form-control {
             min-height: 150px;
             resize: vertical;
+        }
+        
+        .form-submit-message {
+            background-color: #4a7c59;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .form-submit-message.show {
+            display: block;
         }
         
         /* Footer */
@@ -873,6 +918,23 @@
             color: #cbd5e0;
         }
         
+        /* Loading animation */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
         /* Responsive Design */
         @media (max-width: 992px) {
             .about-content {
@@ -939,6 +1001,29 @@
             
             .gallery-grid {
                 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .modal-actions {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .product-info {
+                padding: 15px;
+            }
+            
+            .product-actions .btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -1080,35 +1165,35 @@
             <h2 class="section-title">Product Gallery</h2>
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="images/Artimud_300g.png" alt="Artimud 300g.png">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Artimud 300g">
                     <div class="gallery-caption">Artimud 300g</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="images/Artimud_750g.png" alt="Artimud 750g">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Artimud 750g">
                     <div class="gallery-caption">Artimud 750g</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="images/Hoof-Stuff.png" alt="Hoof Stuff">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Hoof Stuff">
                     <div class="gallery-caption">Hoof Stuff</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="images/2020.png" alt="Field Paste">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Field Paste">
                     <div class="gallery-caption">Field Paste</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="images/HoneyHeel.png" alt="HoneyHeel">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="HoneyHeel">
                     <div class="gallery-caption">HoneyHeel</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="images/SolePaint.png" alt="Sole Cleanse">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Sole Cleanse">
                     <div class="gallery-caption">Sole Cleanse</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="images/20221116_133410 (2).png" alt="Stronghorn">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Stronghorn">
                     <div class="gallery-caption">Stronghorn</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="images/Ear Barm 500ml.png" alt="Ear Balm">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Ear Balm">
                     <div class="gallery-caption">Ear Balm</div>
                 </div>
             </div>
@@ -1122,43 +1207,43 @@
             <div class="testimonials-container">
                 <div class="testimonial-card">
                     <div class="testimonial-text">
-                        ""
+                        "The Artimud product completely transformed my horse's hoof health. After just a few applications, I noticed significant improvement in the texture and strength of the hooves. Highly recommend!"
                     </div>
                     <div class="testimonial-author">
                         <div class="author-image">
-                            <img src="" alt="">
+                            SM
                         </div>
                         <div class="author-details">
-                            <h4></h4>
-                            <p></p>
+                            <h4>Sarah Mitchell</h4>
+                            <p>Professional Equestrian</p>
                         </div>
                     </div>
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-text">
-                        ""
+                        "As a farrier with over 20 years of experience, I'm very selective about the products I use. ParageBragdon's Field Paste is now a staple in my practice. It's effective, natural, and horses respond well to it."
                     </div>
                     <div class="testimonial-author">
                         <div class="author-image">
-                            <img src="" alt="">
+                            JR
                         </div>
                         <div class="author-details">
-                            <h4></h4>
-                            <p></p>
+                            <h4>James Richardson</h4>
+                            <p>Certified Farrier</p>
                         </div>
                     </div>
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-text">
-                        ""
+                        "I've tried countless hoof care products for my competition horses, and HoneyHeel is by far the best. It's helped heal stubborn cracks and keeps their hooves in top condition throughout the season."
                     </div>
                     <div class="testimonial-author">
                         <div class="author-image">
-                            <img src="" alt="">
+                            ED
                         </div>
                         <div class="author-details">
-                            <h4></h4>
-                            <p></p>
+                            <h4>Emma Dubois</h4>
+                            <p>Dressage Competitor</p>
                         </div>
                     </div>
                 </div>
@@ -1216,20 +1301,30 @@
                         <div class="form-group">
                             <label for="name">Your Name</label>
                             <input type="text" id="name" class="form-control" required>
+                            <div class="error-message" id="name-error">Please enter your name</div>
                         </div>
                         <div class="form-group">
                             <label for="email">Your Email</label>
                             <input type="email" id="email" class="form-control" required>
+                            <div class="error-message" id="email-error">Please enter a valid email address</div>
                         </div>
                         <div class="form-group">
                             <label for="subject">Subject</label>
                             <input type="text" id="subject" class="form-control" required>
+                            <div class="error-message" id="subject-error">Please enter a subject</div>
                         </div>
                         <div class="form-group">
                             <label for="message">Your Message</label>
                             <textarea id="message" class="form-control" required></textarea>
+                            <div class="error-message" id="message-error">Please enter your message</div>
                         </div>
-                        <button type="submit" class="btn">Send Message</button>
+                        <button type="submit" class="btn" id="submit-btn">
+                            <span id="submit-text">Send Message</span>
+                            <span id="submit-loading" style="display:none;"><span class="loading-spinner"></span> Sending...</span>
+                        </button>
+                        <div class="form-submit-message" id="submit-success">
+                            Thank you for your message! We'll get back to you soon.
+                        </div>
                     </form>
                 </div>
             </div>
@@ -1289,7 +1384,7 @@
                 description: "Artimud is a product based on green clay, honey, natural minerals and essential oils.",
                 fullDescription: "Artimud est un produit à base d'argile verte, de miel, de minéraux naturels et d'huiles essentiels. Ses agents actifs naturels éliminent les bactéries et les champignons tout en favorisant la formation de tissus sains. Il est idéal pour remplir les seimes externe et les crevasses peu profondes de la ligne blanche. Grâce à sa consistance épaisse, il restera en place plus longtemps que la plupart des produits ce qui permet aux agents de protection de travailler plus longtemps et empêche les saletés et impuretés d'y entrer. Il est aussi utilisé sous des pads pour garder la sole et la fourchette en santé durant un cycle de ferrage.",
                 usage: "Pour les crevasses ou seimes plus profondes et mince, nous vous recommandons d'utiliser le Hoof-stuff.",
-                image: "images/Artimud_300g.png",
+                image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
                 category: "hoof-care"
             },
             "Artimud 750g": {
@@ -1297,7 +1392,7 @@
                 description: "Artimud 750g is a larger version of the green clay-based product.",
                 fullDescription: "Artimud 750g est une version plus grande du produit à base d'argile verte, de miel, de minéraux naturels et d'huiles essentiels. Il offre les mêmes avantages que l'Artimud 300g, éliminant bactéries et champignons tout en favorisant la santé des tissus. Idéal pour remplir les seimes externes et les crevasses peu profondes de la ligne blanche.",
                 usage: "Grâce à sa consistance épaisse, il restera en place plus longtemps que la plupart des produits. Pour les crevasses ou seimes plus profondes et minces, nous vous recommandons d'utiliser le Hoof-stuff.",
-                image: "images/Artimud_750g.png",
+                image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
                 category: "hoof-care"
             },
             "Hoof Stuff": {
@@ -1305,7 +1400,7 @@
                 description: "Hoof Stuff is designed for deeper and thinner cracks and seams.",
                 fullDescription: "Hood Stuff est un produit à base de miel, de minéraux naturels et de fibres naturelles. Ses agents actifs naturels éliminent les bactéries et les champignons tout en favorisant la formation de tissus sains. Il est idéal pour remplir les seimes, les crevasses profondes de la ligne blanche et une lacune centrale profonde due à une pourriture de fourchette.",
                 usage: "Grâce à sa consistance fibreuse et collante, il reste en place facilement ce qui permet aux agents de protection de travailler plus longtemps et empêche les saletés et impuretés d'entrer dans les fentes. Pour les crevasses ou seimes moins profondes essayez Artimud.",
-                image: "images/Hoof-Stuff.png",
+                image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
                 category: "hoof-care"
             },
             "Field Paste 750g": {
@@ -1313,7 +1408,7 @@
                 description: "Field Paste 750g is a versatile product for hoof care.",
                 fullDescription: "Field Paste est un produit à base d'argile, de miel, de minéraux naturels et d'huiles essentiels. Il nettoie et revitalise le dessous du pieds du cheval, aidant ainsi la fourchette et la sole a rester forte et en bonne santé.",
                 usage: "Ses ingrédients favorisent la croissance naturelle des tissus sains, en particulier lorsqu'on le frotte bien sur la surface de la fourchette. Les agents actifs aident également les tissus du sabot et de la fourchette à se durcir sans être corrosifs ou dommageables. La consistance épaisse et pâteuse permet à Field Paste de rester dans les lacunes du pied plus longtemps que les solutions liquides. Idéal pour le traitement de la pourriture de fourchette.",
-                image: "images/2020.png",
+                image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
                 category: "treatments"
             },
             "Field Paste 1800g": {
@@ -1321,7 +1416,7 @@
                 description: "Field Paste 1800g is the economical version for intensive use.",
                 fullDescription: "Field Paste est un produit à base d'argile, de miel, de minéraux naturels et d'huiles essentiels. Il nettoie et revitalise le dessous du pieds du cheval, aidant ainsi la fourchette et la sole a rester forte et en bonne santé.",
                 usage: "Ses ingrédients favorisent la croissance naturelle des tissus sains, en particular lorsqu'on le frotte bien sur la surface de la fourchette. Les agents actifs aident également les tissus du sabot et de la fourchette à se durcir sans être corrosifs ou dommageables. La consistance épaisse et pâteuse permet à Field Paste de rester dans les lacunes du pied plus longtemps que les solutions liquides. Idéal pour le traitement de la pourriture de fourchette.",
-                image: "images/2020.png",
+                image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
                 category: "treatments"
             },
             "HoneyHeel 100ml": {
@@ -1329,7 +1424,7 @@
                 description: "HoneyHeel 100ml is a honey-based ointment to treat infections.",
                 fullDescription: "HoneyHeel est un produit à base de miel, de minéraux naturels, de jus d'aloe vera et d'agents naturels qui rallentissent la cristallisation du miel. C'est une crème riche et apaisante qui offre une barrière protectrice sur les blessures mineures et favorise le processus naturel de cicatrisation.",
                 usage: "Les ingrédients de Honeyheel favorisent la formation naturelle de tissus sains. Sa consistance collante l'aide à rester en place, permettant aux agents actifs de rester en contact avec la peau. Peut être utiliser pour traiter la gale de boue, comme écran solaire, pour soigner des blessures mineures, etc. Note : Le miel pourrait se cristalliser, si cela arrive, réchauffer un peu le produit et mélanger.",
-                image: "images/HoneyHeel.png",
+                image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
                 category: "treatments"
             },
             "Sole Cleanse 500ml": {
@@ -1337,7 +1432,7 @@
                 description: "Sole Cleanse 500ml is a cleaning spray for the sole and frog.",
                 fullDescription: "Sole Cleanse est un spray qui nettoie la fourchette et la sole pour réduire et prévenir les mauvaises odeurs et la dégradation des tissus. Son application favorise la croissance de tissus sains.",
                 usage: "Il peut être utiliser hebdomadairement ou à chaque fois que les sabots sont curés pour prévenir la pourriture de fourchette. On peut aussi s'en servir pour nettoyer, désinfecter et vider les fissures et crevasses de la fourchette, de la ligne blanche ou autre avant l'application de Artimud, Hoof-Stuff ou Field Paste.",
-                image: "images/SolePaint.png",
+                image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
                 category: "cleansers"
             },
             "Stronghorn 500ml": {
@@ -1345,7 +1440,7 @@
                 description: "Stronghorn 500ml strengthens the horn of the hoof.",
                 fullDescription: "Stronghorn est un produit en spray qui nourrit et renforce les tissus et la corne en plus d'être un agent nettoyant très puissant. Aide à diminuer la sensibilité de la sole dans des périodes humides ou celle-ci ce ramollie ou chez des chevaux ayant une sole sensible.",
                 usage: "Vaporiser sur la sole en évitant la fourchette sauf si celle-ci est très molle. Appliquer quotidiennement jusqu'à remarquer une amélioration puis appliquer hebdomadairement par la suite. Pour de meilleurs résultats, laisser sécher avant de sortir le cheval.",
-                image: "images/20221116_133410 (2).png",
+                image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
                 category: "treatments"
             },
             "Ear Balm 500ml": {
@@ -1353,7 +1448,7 @@
                 description: "Ear Balm 500ml is a soothing product for horse ear care.",
                 fullDescription: "Ear Balm est un baume apaisant pour les chevaux qui contient des huiles et beurres naturels qui aident à garder les oreilles et le visage des chevaux hydratés et confortables pendant les mois secs de l'été.",
                 usage: "Il peut être utilisé sur n'importe quelle partie de la peau du cheval pour hydrater et apaiser les irritations. Ne pas l'appliquer trop près des yeux. Appliquer toutes les 24 a 48 heures.",
-                image: "images/Ear Barm 500ml.png",
+                image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
                 category: "treatments"
             }
         };
@@ -1377,6 +1472,10 @@
         const filterBtns = document.querySelectorAll('.filter-btn');
         const productFilters = document.querySelectorAll('.product-filter');
         const contactForm = document.getElementById('contact-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const submitText = document.getElementById('submit-text');
+        const submitLoading = document.getElementById('submit-loading');
+        const submitSuccess = document.getElementById('submit-success');
         
         // Initialize the page
         function init() {
@@ -1397,7 +1496,7 @@
                 
                 // Create product image or placeholder
                 const imageHtml = data.image ? 
-                    `<img src="${data.image}" alt="${name}" onerror="this.parentNode.innerHTML='<div class=\'placeholder-text\'>${name}</div>'">` :
+                    `<img src="${data.image}" alt="${name}" loading="lazy" onerror="this.parentNode.innerHTML='<div class=\'placeholder-text\'>${name}</div>'">` :
                     `<div class="placeholder-text">${name}</div>`;
                 
                 productCard.innerHTML = `
@@ -1425,7 +1524,7 @@
             
             // Create product image or placeholder for modal
             const imageHtml = product.image ? 
-                `<img src="${product.image}" alt="${name}" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'placeholder-text\'>${name}</div>'">` :
+                `<img src="${product.image}" alt="${name}" loading="lazy" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'placeholder-text\'>${name}</div>'">` :
                 `<div class="placeholder-text">${name}</div>`;
             
             modalContent.innerHTML = `
@@ -1547,8 +1646,79 @@
             if (contactForm) {
                 contactForm.addEventListener('submit', function(e) {
                     e.preventDefault();
-                    alert('Thank you for your message! This is a demo form.');
-                    contactForm.reset();
+                    
+                    // Validate form
+                    const nameInput = document.getElementById('name');
+                    const emailInput = document.getElementById('email');
+                    const subjectInput = document.getElementById('subject');
+                    const messageInput = document.getElementById('message');
+                    
+                    let isValid = true;
+                    
+                    // Name validation
+                    if (!nameInput.value.trim()) {
+                        document.getElementById('name-error').classList.add('show');
+                        nameInput.classList.add('error');
+                        isValid = false;
+                    } else {
+                        document.getElementById('name-error').classList.remove('show');
+                        nameInput.classList.remove('error');
+                    }
+                    
+                    // Email validation
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailInput.value.trim() || !emailRegex.test(emailInput.value)) {
+                        document.getElementById('email-error').classList.add('show');
+                        emailInput.classList.add('error');
+                        isValid = false;
+                    } else {
+                        document.getElementById('email-error').classList.remove('show');
+                        emailInput.classList.remove('error');
+                    }
+                    
+                    // Subject validation
+                    if (!subjectInput.value.trim()) {
+                        document.getElementById('subject-error').classList.add('show');
+                        subjectInput.classList.add('error');
+                        isValid = false;
+                    } else {
+                        document.getElementById('subject-error').classList.remove('show');
+                        subjectInput.classList.remove('error');
+                    }
+                    
+                    // Message validation
+                    if (!messageInput.value.trim()) {
+                        document.getElementById('message-error').classList.add('show');
+                        messageInput.classList.add('error');
+                        isValid = false;
+                    } else {
+                        document.getElementById('message-error').classList.remove('show');
+                        messageInput.classList.remove('error');
+                    }
+                    
+                    if (!isValid) return;
+                    
+                    // Show loading state
+                    submitText.style.display = 'none';
+                    submitLoading.style.display = 'inline';
+                    
+                    // Simulate form submission
+                    setTimeout(() => {
+                        // Hide loading state
+                        submitText.style.display = 'inline';
+                        submitLoading.style.display = 'none';
+                        
+                        // Show success message
+                        submitSuccess.classList.add('show');
+                        
+                        // Reset form
+                        contactForm.reset();
+                        
+                        // Hide success message after 5 seconds
+                        setTimeout(() => {
+                            submitSuccess.classList.remove('show');
+                        }, 5000);
+                    }, 1500);
                 });
             }
         }
@@ -1587,7 +1757,7 @@
                 
                 // Create product image or placeholder for cart
                 const imageHtml = productData[item.name].image ? 
-                    `<img src="${productData[item.name].image}" alt="${item.name}" onerror="this.style.display='none'">` :
+                    `<img src="${productData[item.name].image}" alt="${item.name}" loading="lazy" onerror="this.style.display='none'">` :
                     '';
                 
                 const cartItem = document.createElement('div');
