@@ -36,4 +36,4 @@ We’d love to hear from you — reach out through the [website](https://parbrag
 
 ---
 
-**Live Site:** [parbrag.github.io/paragebragdon](https://parbrag.github.io/Horsecare/)
+**Live Site:** [parbrag.github.io/Horsecare](https://parbrag.github.io/Horsecare/)
