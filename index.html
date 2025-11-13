@@ -126,6 +126,7 @@
         .nav-links {
             display: flex;
             list-style: none;
+            align-items: center;
         }
         
         .nav-links li {
@@ -166,6 +167,26 @@
         .hamburger {
             display: none;
             cursor: pointer;
+        }
+        
+        /* Language Toggle Button */
+        .lang-toggle {
+            background: none;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 30px;
+            padding: 8px 15px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .lang-toggle:hover {
+            background: var(--primary);
+            color: white;
         }
         
         /* Hero Section */
@@ -442,7 +463,7 @@
             font-weight: bold;
             color: var(--dark);
             margin-bottom: 20px;
-        }
+}
         
         .modal-description {
             margin-bottom: 20px;
@@ -695,17 +716,6 @@
         .testimonial-text {
             font-style: italic;
             margin-bottom: 20px;
-            position: relative;
-        }
-        
-        .testimonial-text::before {
-            content: """;
-            font-size: 3rem;
-            color: var(--accent);
-            position: absolute;
-            left: -15px;
-            top: -15px;
-            opacity: 0.3;
         }
         
         .testimonial-author {
@@ -719,12 +729,12 @@
             border-radius: 50%;
             overflow: hidden;
             margin-right: 15px;
-            background-color: var(--secondary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
+        }
+        
+        .author-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
         .author-details h4 {
@@ -884,81 +894,6 @@
             color: #cbd5e0;
         }
         
-        /* Notification container */
-        #notification-container {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 9999;
-        }
-        
-        /* Dark mode toggle button */
-        #darkModeToggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 9999;
-            padding: 10px 15px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-        }
-        
-        #darkModeToggle:hover {
-            background: var(--secondary);
-            transform: translateY(-3px);
-        }
-        
-        /* Dark mode styles */
-        body.dark-mode {
-            background-color: #222;
-            color: #eee;
-        }
-        
-        body.dark-mode header,
-        body.dark-mode .service-card,
-        body.dark-mode .product-card,
-        body.dark-mode .testimonial-card,
-        body.dark-mode .contact-form,
-        body.dark-mode .product-modal,
-        body.dark-mode .cart-sidebar {
-            background-color: #333;
-            color: #eee;
-        }
-        
-        body.dark-mode header {
-            box-shadow: 0 2px 15px rgba(0,0,0,0.3);
-        }
-        
-        body.dark-mode .section-title {
-            color: #ccc;
-        }
-        
-        body.dark-mode .nav-links a,
-        body.dark-mode .footer-links a,
-        body.dark-mode .product-title,
-        body.dark-mode .modal-details h2 {
-            color: #ccc;
-        }
-        
-        body.dark-mode .services {
-            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-        }
-        
-        body.dark-mode .form-control {
-            background-color: #444;
-            color: #eee;
-            border-color: #555;
-        }
-        
-        body.dark-mode footer {
-            background-color: #111;
-        }
-        
         /* Responsive Design */
         @media (max-width: 992px) {
             .about-content {
@@ -1027,63 +962,37 @@
                 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             }
             
-            .modal-actions {
-                flex-direction: column;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-            
-            .product-info {
-                padding: 15px;
-            }
-            
-            .product-actions .btn {
-                padding: 10px 15px;
-                font-size: 0.9rem;
-            }
-            
-            #darkModeToggle {
-                bottom: 70px;
-                right: 15px;
-                font-size: 0.8rem;
-                padding: 8px 12px;
+            .lang-toggle {
+                margin-top: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Notification container -->
-    <div id="notification-container"></div>
-    
-    <!-- Dark mode toggle button -->
-    <button id="darkModeToggle" aria-label="Toggle dark mode">🌙 Dark Mode</button>
-
     <!-- Header & Navigation -->
     <header>
         <div class="container">
             <nav>
                 <a href="#" class="logo"><i class="fas fa-horse-head"></i>Parage<span>Bragdon</span></a>
                 <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#products">Products</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#home" data-en="Home" data-fr="Accueil">Home</a></li>
+                    <li><a href="#about" data-en="About" data-fr="À propos">About</a></li>
+                    <li><a href="#services" data-en="Services" data-fr="Services">Services</a></li>
+                    <li><a href="#products" data-en="Products" data-fr="Produits">Products</a></li>
+                    <li><a href="#gallery" data-en="Gallery" data-fr="Galerie">Gallery</a></li>
+                    <li><a href="#testimonials" data-en="Testimonials" data-fr="Témoignages">Testimonials</a></li>
+                    <li><a href="#contact" data-en="Contact" data-fr="Contact">Contact</a></li>
                     <li>
                         <a href="#" class="cart-icon" id="cart-toggle">
                             <i class="fas fa-shopping-cart"></i>
                             <span class="cart-count">0</span>
                         </a>
+                    </li>
+                    <li>
+                        <button class="lang-toggle" id="lang-toggle">
+                            <i class="fas fa-globe"></i>
+                            <span id="lang-text">FR</span>
+                        </button>
                     </li>
                 </ul>
                 <div class="hamburger">
@@ -1107,25 +1016,25 @@
     <div class="cart-overlay" id="cart-overlay"></div>
     <div class="cart-sidebar" id="cart-sidebar">
         <div class="cart-header">
-            <h2>Your Cart</h2>
+            <h2 data-en="Your Cart" data-fr="Votre Panier">Your Cart</h2>
             <button class="close-cart" id="close-cart"><i class="fas fa-times"></i></button>
         </div>
         <div class="cart-items" id="cart-items">
             <!-- Cart items will be added here dynamically -->
         </div>
-        <div class="cart-total" id="cart-total">Total: $0.00</div>
-        <button class="checkout-btn" id="checkout-btn">Proceed to Checkout</button>
+        <div class="cart-total" id="cart-total" data-en="Total" data-fr="Total">Total: $0.00</div>
+        <button class="checkout-btn" id="checkout-btn" data-en="Proceed to Checkout" data-fr="Procéder au Paiement">Proceed to Checkout</button>
     </div>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Premium Hoof Care for Your Equine Partners</h1>
-                <p>Specialized products and services to keep your horses healthy and performing at their best</p>
+                <h1 data-en="Premium Hoof Care for Your Equine Partners" data-fr="Soins Premium pour Sabots de vos Chevaux">Premium Hoof Care for Your Equine Partners</h1>
+                <p data-en="Specialized products and services to keep your horses healthy and performing at their best" data-fr="Produits et services spécialisés pour garder vos chevaux en santé et performants">Specialized products and services to keep your horses healthy and performing at their best</p>
                 <div class="hero-buttons">
-                    <a href="#products" class="btn">Shop Products</a>
-                    <a href="#services" class="btn btn-outline">Our Services</a>
+                    <a href="#products" class="btn" data-en="Shop Products" data-fr="Acheter Produits">Shop Products</a>
+                    <a href="#services" class="btn btn-outline" data-en="Our Services" data-fr="Nos Services">Our Services</a>
                 </div>
             </div>
         </div>
@@ -1134,14 +1043,14 @@
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
-            <h2 class="section-title">About ParageBragdon</h2>
+            <h2 class="section-title" data-en="About ParageBragdon" data-fr="À propos de ParageBragdon">About ParageBragdon</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>At ParageBragdon, we're passionate about providing the highest quality hoof care products and services for horses. Our formulations are developed with years of experience in equine care and farriery.</p>
-                    <p>All our products are made with natural ingredients, carefully selected for their effectiveness in promoting hoof health, preventing infections, and supporting overall equine wellness.</p>
-                    <p>We understand that your horse's health is paramount, which is why we've dedicated ourselves to creating solutions that truly work.</p>
-                    <a href="#products" class="btn" style="margin-top: 20px;">Explore Products</a>
+                    <h3 data-en="Our Mission" data-fr="Notre Mission">Our Mission</h3>
+                    <p data-en="At ParageBragdon, we're passionate about providing the highest quality hoof care products and services for horses. Our formulations are developed with years of experience in equine care and farriery." data-fr="Chez ParageBragdon, nous sommes passionnés par la fourniture de produits et services de soins pour sabots de la plus haute qualité pour les chevaux. Nos formulations sont développées avec des années d'expérience en soins équins et en maréchalerie.">At ParageBragdon, we're passionate about providing the highest quality hoof care products and services for horses. Our formulations are developed with years of experience in equine care and farriery.</p>
+                    <p data-en="All our products are made with natural ingredients, carefully selected for their effectiveness in promoting hoof health, preventing infections, and supporting overall equine wellness." data-fr="Tous nos produits sont fabriqués avec des ingrédients naturels, soigneusement sélectionnés pour leur efficacité à promouvoir la santé des sabots, prévenir les infections et soutenir le bien-être équin global.">All our products are made with natural ingredients, carefully selected for their effectiveness in promoting hoof health, preventing infections, and supporting overall equine wellness.</p>
+                    <p data-en="We understand that your horse's health is paramount, which is why we've dedicated ourselves to creating solutions that truly work." data-fr="Nous comprenons que la santé de votre cheval est primordiale, c'est pourquoi nous nous sommes consacrés à créer des solutions qui fonctionnent vraiment.">We understand that your horse's health is paramount, which is why we've dedicated ourselves to creating solutions that truly work.</p>
+                    <a href="#products" class="btn" style="margin-top: 20px;" data-en="Explore Products" data-fr="Explorer Produits">Explore Products</a>
                 </div>
                 <div class="about-image">
                     <img src="https://images.unsplash.com/photo-1553284965-5dd8352ff1bd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1771&q=80" alt="Horse hoof care">
@@ -1153,28 +1062,28 @@
     <!-- Services Section -->
     <section id="services" class="services">
         <div class="container">
-            <h2 class="section-title">Our Services</h2>
+            <h2 class="section-title" data-en="Our Services" data-fr="Nos Services">Our Services</h2>
             <div class="services-container">
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-horse"></i>
                     </div>
-                    <h3>Physiological Trimming</h3>
-                    <p>I offer physiological trimming services that respect the function of each structure of your horse's hooves.</p>
+                    <h3 data-en="Physiological Trimming" data-fr="Parage Physiologique">Physiological Trimming</h3>
+                    <p data-en="I offer physiological trimming services that respect the function of each structure of your horse's hooves." data-fr="Je propose des services de parage physiologique qui respectent la fonction de chaque structure des sabots de votre cheval.">I offer physiological trimming services that respect the function of each structure of your horse's hooves.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-hand-holding-heart"></i>
                     </div>
-                    <h3>Hoof Care</h3>
-                    <p>Committed to offering the best for my clients, I've become a distributor of Red Horse products.</p>
+                    <h3 data-en="Hoof Care" data-fr="Soins des Sabots">Hoof Care</h3>
+                    <p data-en="Committed to offering the best for my clients, I've become a distributor of Red Horse products." data-fr="Engagé à offrir le meilleur à mes clients, je suis devenu distributeur des produits Red Horse.">Committed to offering the best for my clients, I've become a distributor of Red Horse products.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-truck"></i>
                     </div>
-                    <h3>Service Areas</h3>
-                    <p>Serving Terrebonne/Mascouche area on the North Shore of Montreal. Remote areas (30min-1h travel) also available.</p>
+                    <h3 data-en="Service Areas" data-fr="Zones de Service">Service Areas</h3>
+                    <p data-en="Serving Terrebonne/Mascouche area on the North Shore of Montreal. Remote areas (30min-1h travel) also available." data-fr="Desservant la région de Terrebonne/Mascouche sur la Rive-Nord de Montréal. Zones éloignées (30min-1h de déplacement) également disponibles.">Serving Terrebonne/Mascouche area on the North Shore of Montreal. Remote areas (30min-1h travel) also available.</p>
                 </div>
             </div>
         </div>
@@ -1183,12 +1092,12 @@
     <!-- Products Section -->
     <section id="products" class="products">
         <div class="container">
-            <h2 class="section-title">Our Products</h2>
+            <h2 class="section-title" data-en="Our Products" data-fr="Nos Produits">Our Products</h2>
             <div class="products-filter">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="hoof-care">Hoof Care</button>
-                <button class="filter-btn" data-filter="treatments">Treatments</button>
-                <button class="filter-btn" data-filter="cleansers">Cleansers</button>
+                <button class="filter-btn active" data-filter="all" data-en="All" data-fr="Tous">All</button>
+                <button class="filter-btn" data-filter="hoof-care" data-en="Hoof Care" data-fr="Soins Sabots">Hoof Care</button>
+                <button class="filter-btn" data-filter="treatments" data-en="Treatments" data-fr="Traitements">Treatments</button>
+                <button class="filter-btn" data-filter="cleansers" data-en="Cleansers" data-fr="Nettoyants">Cleansers</button>
             </div>
             <div class="products-grid" id="products-grid">
                 <!-- Products will be added here dynamically -->
@@ -1199,10 +1108,10 @@
     <!-- Gallery Section -->
     <section id="gallery" class="gallery">
         <div class="container">
-            <h2 class="section-title">Product Gallery</h2>
+            <h2 class="section-title" data-en="Product Gallery" data-fr="Galerie de Produits">Product Gallery</h2>
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="images/Artimud_300g.png" alt="Artimud 300g">
+                    <img src="images/Artimud_300g.png" alt="Artimud 300g.png">
                     <div class="gallery-caption">Artimud 300g</div>
                 </div>
                 <div class="gallery-item">
@@ -1240,47 +1149,47 @@
     <!-- Testimonials Section -->
     <section id="testimonials" class="testimonials">
         <div class="container">
-            <h2 class="section-title">What Our Customers Say</h2>
+            <h2 class="section-title" data-en="What Our Customers Say" data-fr="Ce Que Disent Nos Clients">What Our Customers Say</h2>
             <div class="testimonials-container">
                 <div class="testimonial-card">
                     <div class="testimonial-text">
-                        "The Artimud product completely transformed my horse's hoof health. After just a few applications, I noticed significant improvement in the texture and strength of the hooves. Highly recommend!"
+                        ""
                     </div>
                     <div class="testimonial-author">
                         <div class="author-image">
-                            SM
+                            <img src="" alt="">
                         </div>
                         <div class="author-details">
-                            <h4>Sarah Mitchell</h4>
-                            <p>Professional Equestrian</p>
+                            <h4></h4>
+                            <p></p>
                         </div>
                     </div>
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-text">
-                        "As a farrier with over 20 years of experience, I'm very selective about the products I use. ParageBragdon's Field Paste is now a staple in my practice. It's effective, natural, and horses respond well to it."
+                        ""
                     </div>
                     <div class="testimonial-author">
                         <div class="author-image">
-                            JR
+                            <img src="" alt="">
                         </div>
                         <div class="author-details">
-                            <h4>James Richardson</h4>
-                            <p>Certified Farrier</p>
+                            <h4></h4>
+                            <p></p>
                         </div>
                     </div>
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-text">
-                        "I've tried countless hoof care products for my competition horses, and HoneyHeel is by far the best. It's helped heal stubborn cracks and keeps their hooves in top condition throughout the season."
+                        ""
                     </div>
                     <div class="testimonial-author">
                         <div class="author-image">
-                            ED
+                            <img src="" alt="">
                         </div>
                         <div class="author-details">
-                            <h4>Emma Dubois</h4>
-                            <p>Dressage Competitor</p>
+                            <h4></h4>
+                            <p></p>
                         </div>
                     </div>
                 </div>
@@ -1291,18 +1200,18 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
+            <h2 class="section-title" data-en="Get In Touch" data-fr="Contactez-Nous">Get In Touch</h2>
             <div class="contact-container">
                 <div class="contact-info">
-                    <h3>We'd Love to Hear From You</h3>
-                    <p>Have questions about our products or need advice on hoof care? Contact us for expert guidance.</p>
+                    <h3 data-en="We'd Love to Hear From You" data-fr="Nous Serions Ravi d'Entendre de Vous">We'd Love to Hear From You</h3>
+                    <p data-en="Have questions about our products or need advice on hoof care? Contact us for expert guidance." data-fr="Des questions sur nos produits ou besoin de conseils sur les soins des sabots? Contactez-nous pour des conseils d'experts.">Have questions about our products or need advice on hoof care? Contact us for expert guidance.</p>
                     <div class="contact-item">
                         <div class="contact-icon">
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <div>
-                            <h4>Service Area</h4>
-                            <p>Terrebonne/Mascouche, North Shore of Montreal</p>
+                            <h4 data-en="Service Area" data-fr="Zone de Service">Service Area</h4>
+                            <p data-en="Terrebonne/Mascouche, North Shore of Montreal" data-fr="Terrebonne/Mascouche, Rive-Nord de Montréal">Terrebonne/Mascouche, North Shore of Montreal</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -1310,8 +1219,8 @@
                             <i class="fas fa-phone"></i>
                         </div>
                         <div>
-                            <h4>Phone</h4>
-                            <p>Available upon request</p>
+                            <h4 data-en="Phone" data-fr="Téléphone">Phone</h4>
+                            <p data-en="Available upon request" data-fr="Disponible sur demande">Available upon request</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -1319,7 +1228,7 @@
                             <i class="fas fa-envelope"></i>
                         </div>
                         <div>
-                            <h4>Email</h4>
+                            <h4 data-en="Email" data-fr="Courriel">Email</h4>
                             <p>gabrielle.bragdon@hotmail.ca</p>
                         </div>
                     </div>
@@ -1328,30 +1237,30 @@
                             <i class="fas fa-dollar-sign"></i>
                         </div>
                         <div>
-                            <h4>Pricing</h4>
-                            <p>$55 for local service, $65 for remote areas (30min-1h travel)</p>
+                            <h4 data-en="Pricing" data-fr="Tarification">Pricing</h4>
+                            <p data-en="$55 for local service, $65 for remote areas (30min-1h travel)" data-fr="$55 pour service local, $65 pour zones éloignées (30min-1h de déplacement)">$55 for local service, $65 for remote areas (30min-1h travel)</p>
                         </div>
                     </div>
                 </div>
                 <div class="contact-form">
                     <form id="contact-form">
                         <div class="form-group">
-                            <label for="name">Your Name</label>
+                            <label for="name" data-en="Your Name" data-fr="Votre Nom">Your Name</label>
                             <input type="text" id="name" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">Your Email</label>
+                            <label for="email" data-en="Your Email" data-fr="Votre Courriel">Your Email</label>
                             <input type="email" id="email" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="subject">Subject</label>
+                            <label for="subject" data-en="Subject" data-fr="Sujet">Subject</label>
                             <input type="text" id="subject" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="message">Your Message</label>
+                            <label for="message" data-en="Your Message" data-fr="Votre Message">Your Message</label>
                             <textarea id="message" class="form-control" required></textarea>
                         </div>
-                        <button type="submit" class="btn">Send Message</button>
+                        <button type="submit" class="btn" data-en="Send Message" data-fr="Envoyer Message">Send Message</button>
                     </form>
                 </div>
             </div>
@@ -1364,36 +1273,36 @@
             <div class="footer-content">
                 <div class="footer-about">
                     <div class="footer-logo"><i class="fas fa-horse-head"></i>Parage<span>Bragdon</span></div>
-                    <p>Providing premium hoof care products and services for healthier, happier horses.</p>
+                    <p data-en="Providing premium hoof care products and services for healthier, happier horses." data-fr="Fourniture de produits et services de soins pour sabots premium pour des chevaux en meilleure santé et plus heureux.">Providing premium hoof care products and services for healthier, happier horses.</p>
                     <div class="social-links">
                         <a href="https://www.facebook.com/gabrielle.bragdon" class="social-link"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 <div class="footer-links">
-                    <h3>Quick Links</h3>
+                    <h3 data-en="Quick Links" data-fr="Liens Rapides">Quick Links</h3>
                     <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href#services">Services</a></li>
-                        <li><a href="#products">Products</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#home" data-en="Home" data-fr="Accueil">Home</a></li>
+                        <li><a href="#about" data-en="About" data-fr="À propos">About</a></li>
+                        <li><a href="#services" data-en="Services" data-fr="Services">Services</a></li>
+                        <li><a href="#products" data-en="Products" data-fr="Produits">Products</a></li>
+                        <li><a href="#contact" data-en="Contact" data-fr="Contact">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
-                    <h3>Products</h3>
+                    <h3 data-en="Products" data-fr="Produits">Products</h3>
                     <ul>
-                        <li><a href="#" class="product-filter" data-filter="hoof-care">Hoof Care</a></li>
-                        <li><a href="#" class="product-filter" data-filter="treatments">Treatments</a></li>
-                        <li><a href="#" class="product-filter" data-filter="cleansers">Cleansers</a></li>
+                        <li><a href="#" class="product-filter" data-filter="hoof-care" data-en="Hoof Care" data-fr="Soins Sabots">Hoof Care</a></li>
+                        <li><a href="#" class="product-filter" data-filter="treatments" data-en="Treatments" data-fr="Traitements">Treatments</a></li>
+                        <li><a href="#" class="product-filter" data-filter="cleansers" data-en="Cleansers" data-fr="Nettoyants">Cleansers</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
-                    <h3>Support</h3>
+                    <h3 data-en="Support" data-fr="Support">Support</h3>
                     <ul>
-                        <li><a href="#">Shipping & Returns</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#" data-en="Shipping & Returns" data-fr="Livraison & Retours">Shipping & Returns</a></li>
+                        <li><a href="#" data-en="FAQ" data-fr="FAQ">FAQ</a></li>
+                        <li><a href="#" data-en="Privacy Policy" data-fr="Politique de Confidentialité">Privacy Policy</a></li>
                     </ul>
                 </div>
             </div>
@@ -1404,77 +1313,161 @@
     </footer>
 
     <script>
+        // Language management
+        let currentLang = 'en'; // Default language
+        
         // Product data with complete details and image paths
         const productData = {
             "Artimud 300g": {
                 price: 30.00,
-                description: "Artimud is a product based on green clay, honey, natural minerals and essential oils.",
-                fullDescription: "Artimud est un produit à base d'argile verte, de miel, de minéraux naturels et d'huiles essentiels. Ses agents actifs naturels éliminent les bactéries et les champignons tout en favorisant la formation de tissus sains. Il est idéal pour remplir les seimes externe et les crevasses peu profondes de la ligne blanche. Grâce à sa consistance épaisse, il restera en place plus longtemps que la plupart des produits ce qui permet aux agents de protection de travailler plus longtemps et empêche les saletés et impuretés d'y entrer. Il est aussi utilisé sous des pads pour garder la sole et la fourchette en santé durant un cycle de ferrage.",
-                usage: "Pour les crevasses ou seimes plus profondes et mince, nous vous recommandons d'utiliser le Hoof-stuff.",
+                description: {
+                    en: "Artimud is a product based on green clay, honey, natural minerals and essential oils.",
+                    fr: "Artimud est un produit à base d'argile verte, de miel, de minéraux naturels et d'huiles essentiels."
+                },
+                fullDescription: {
+                    en: "Artimud is a product based on green clay, honey, natural minerals and essential oils. Its natural active agents eliminate bacteria and fungi while promoting the formation of healthy tissues. It is ideal for filling external cracks and shallow crevices in the white line. Thanks to its thick consistency, it will stay in place longer than most products, allowing the protective agents to work longer and preventing dirt and impurities from entering. It is also used under pads to keep the sole and frog healthy during a shoeing cycle.",
+                    fr: "Artimud est un produit à base d'argile verte, de miel, de minéraux naturels et d'huiles essentiels. Ses agents actifs naturels éliminent les bactéries et les champignons tout en favorisant la formation de tissus sains. Il est idéal pour remplir les seimes externe et les crevasses peu profondes de la ligne blanche. Grâce à sa consistance épaisse, il restera en place plus longtemps que la plupart des produits ce qui permet aux agents de protection de travailler plus longtemps et empêche les saletés et impuretés d'y entrer. Il est aussi utilisé sous des pads pour garder la sole et la fourchette en santé durant un cycle de ferrage."
+                },
+                usage: {
+                    en: "For deeper and thinner cracks and seams, we recommend using Hoof-stuff.",
+                    fr: "Pour les crevasses ou seimes plus profondes et mince, nous vous recommandons d'utiliser le Hoof-stuff."
+                },
                 image: "images/Artimud_300g.png",
                 category: "hoof-care"
             },
             "Artimud 750g": {
                 price: 65.00,
-                description: "Artimud 750g is a larger version of the green clay-based product.",
-                fullDescription: "Artimud 750g est une version plus grande du produit à base d'argile verte, de miel, de minéraux naturels et d'huiles essentiels. Il offre les mêmes avantages que l'Artimud 300g, éliminant bactéries et champignons tout en favorisant la santé des tissus. Idéal pour remplir les seimes externes et les crevasses peu profondes de la ligne blanche.",
-                usage: "Grâce à sa consistance épaisse, il restera en place plus longtemps que la plupart des produits. Pour les crevasses ou seimes plus profondes et minces, nous vous recommandons d'utiliser le Hoof-stuff.",
+                description: {
+                    en: "Artimud 750g is a larger version of the green clay-based product.",
+                    fr: "Artimud 750g est une version plus grande du produit à base d'argile verte, de miel, de minéraux naturels et d'huiles essentiels."
+                },
+                fullDescription: {
+                    en: "Artimud 750g is a larger version of the green clay-based product, honey, natural minerals and essential oils. It offers the same benefits as Artimud 300g, eliminating bacteria and fungi while promoting tissue health. Ideal for filling external cracks and shallow crevices in the white line.",
+                    fr: "Artimud 750g est une version plus grande du produit à base d'argile verte, de miel, de minéraux naturels et d'huiles essentiels. Il offre les mêmes avantages que l'Artimud 300g, éliminant bactéries et champignons tout en favorisant la santé des tissus. Idéal pour remplir les seimes externes et les crevasses peu profondes de la ligne blanche."
+                },
+                usage: {
+                    en: "Thanks to its thick consistency, it will stay in place longer than most products. For deeper and thinner cracks and seams, we recommend using Hoof-stuff.",
+                    fr: "Grâce à sa consistance épaisse, il restera en place plus longtemps que la plupart des produits. Pour les crevasses ou seimes plus profondes et minces, nous vous recommandons d'utiliser le Hoof-stuff."
+                },
                 image: "images/Artimud_750g.png",
                 category: "hoof-care"
             },
             "Hoof Stuff": {
                 price: 35.00,
-                description: "Hoof Stuff is designed for deeper and thinner cracks and seams.",
-                fullDescription: "Hood Stuff est un produit à base de miel, de minéraux naturels et de fibres naturelles. Ses agents actifs naturels éliminent les bactéries et les champignons tout en favorisant la formation de tissus sains. Il est idéal pour remplir les seimes, les crevasses profondes de la ligne blanche et une lacune centrale profonde due à une pourriture de fourchette.",
-                usage: "Grâce à sa consistance fibreuse et collante, il reste en place facilement ce qui permet aux agents de protection de travailler plus longtemps et empêche les saletés et impuretés d'entrer dans les fentes. Pour les crevasses ou seimes moins profondes essayez Artimud.",
+                description: {
+                    en: "Hoof Stuff is designed for deeper and thinner cracks and seams.",
+                    fr: "Hoof Stuff est conçu pour les crevasses et seimes plus profondes et minces."
+                },
+                fullDescription: {
+                    en: "Hoof Stuff is a product based on honey, natural minerals and natural fibers. Its natural active agents eliminate bacteria and fungi while promoting the formation of healthy tissues. It is ideal for filling cracks, deep crevices in the white line and a deep central lacuna due to frog rot.",
+                    fr: "Hood Stuff est un produit à base de miel, de minéraux naturels et de fibres naturelles. Ses agents actifs naturels éliminent les bactéries et les champignons tout en favorisant la formation de tissus sains. Il est idéal pour remplir les seimes, les crevasses profondes de la ligne blanche et une lacune centrale profonde due à une pourriture de fourchette."
+                },
+                usage: {
+                    en: "Thanks to its fibrous and sticky consistency, it stays in place easily, allowing the protective agents to work longer and preventing dirt and impurities from entering the cracks. For less deep cracks or seams, try Artimud.",
+                    fr: "Grâce à sa consistance fibreuse et collante, il reste en place facilement ce qui permet aux agents de protection de travailler plus longtemps et empêche les saletés et impuretés d'entrer dans les fentes. Pour les crevasses ou seimes moins profondes essayez Artimud."
+                },
                 image: "images/Hoof-Stuff.png",
                 category: "hoof-care"
             },
             "Field Paste 750g": {
                 price: 45.00,
-                description: "Field Paste 750g is a versatile product for hoof care.",
-                fullDescription: "Field Paste est un produit à base d'argile, de miel, de minéraux naturels et d'huiles essentiels. Il nettoie et revitalise le dessous du pieds du cheval, aidant ainsi la fourchette et la sole a rester forte et en bonne santé.",
-                usage: "Ses ingrédients favorisent la croissance naturelle des tissus sains, en particulier lorsqu'on le frotte bien sur la surface de la fourchette. Les agents actifs aident également les tissus du sabot et de la fourchette à se durcir sans être corrosifs ou dommageables. La consistance épaisse et pâteuse permet à Field Paste de rester dans les lacunes du pied plus longtemps que les solutions liquides. Idéal pour le traitement de la pourriture de fourchette.",
+                description: {
+                    en: "Field Paste 750g is a versatile product for hoof care.",
+                    fr: "Field Paste 750g est un produit polyvalent pour les soins des sabots."
+                },
+                fullDescription: {
+                    en: "Field Paste is a product based on clay, honey, natural minerals and essential oils. It cleans and revitalizes the underside of the horse's foot, helping the frog and sole to stay strong and healthy.",
+                    fr: "Field Paste est un produit à base d'argile, de miel, de minéraux naturels et d'huiles essentiels. Il nettoie et revitalise le dessous du pieds du cheval, aidant ainsi la fourchette et la sole a rester forte et en bonne santé."
+                },
+                usage: {
+                    en: "Its ingredients promote the natural growth of healthy tissues, especially when rubbed well on the surface of the frog. The active agents also help the tissues of the hoof and frog to harden without being corrosive or damaging. The thick, pasty consistency allows Field Paste to stay in the gaps of the foot longer than liquid solutions. Ideal for the treatment of frog rot.",
+                    fr: "Ses ingrédients favorisent la croissance naturelle des tissus sains, en particulier lorsqu'on le frotte bien sur la surface de la fourchette. Les agents actifs aident également les tissus du sabot et de la fourchette à se durcir sans être corrosifs ou dommageables. La consistance épaisse et pâteuse permet à Field Paste de rester dans les lacunes du pied plus longtemps que les solutions liquides. Idéal pour le traitement de la pourriture de fourchette."
+                },
                 image: "images/2020.png",
                 category: "treatments"
             },
             "Field Paste 1800g": {
                 price: 75.00,
-                description: "Field Paste 1800g is the economical version for intensive use.",
-                fullDescription: "Field Paste est un produit à base d'argile, de miel, de minéraux naturels et d'huiles essentiels. Il nettoie et revitalise le dessous du pieds du cheval, aidant ainsi la fourchette et la sole a rester forte et en bonne santé.",
-                usage: "Ses ingrédients favorisent la croissance naturelle des tissus sains, en particular lorsqu'on le frotte bien sur la surface de la fourchette. Les agents actifs aident également les tissus du sabot et de la fourchette à se durcir sans être corrosifs ou dommageables. La consistance épaisse et pâteuse permet à Field Paste de rester dans les lacunes du pied plus longtemps que les solutions liquides. Idéal pour le traitement de la pourriture de fourchette.",
+                description: {
+                    en: "Field Paste 1800g is the economical version for intensive use.",
+                    fr: "Field Paste 1800g est la version économique pour une utilisation intensive."
+                },
+                fullDescription: {
+                    en: "Field Paste is a product based on clay, honey, natural minerals and essential oils. It cleans and revitalizes the underside of the horse's foot, helping the frog and sole to stay strong and healthy.",
+                    fr: "Field Paste est un produit à base d'argile, de miel, de minéraux naturels et d'huiles essentiels. Il nettoie et revitalise le dessous du pieds du cheval, aidant ainsi la fourchette et la sole a rester forte et en bonne santé."
+                },
+                usage: {
+                    en: "Its ingredients promote the natural growth of healthy tissues, especially when rubbed well on the surface of the frog. The active agents also help the tissues of the hoof and frog to harden without being corrosive or damaging. The thick, pasty consistency allows Field Paste to stay in the gaps of the foot longer than liquid solutions. Ideal for the treatment of frog rot.",
+                    fr: "Ses ingrédients favorisent la croissance naturelle des tissus sains, en particular lorsqu'on le frotte bien sur la surface de la fourchette. Les agents actifs aident également les tissus du sabot et de la fourchette à se durcir sans être corrosifs ou dommageables. La consistance épaisse et pâteuse permet à Field Paste de rester dans les lacunes du pied plus longtemps que les solutions liquides. Idéal pour le traitement de la pourriture de fourchette."
+                },
                 image: "images/2020.png",
                 category: "treatments"
             },
             "HoneyHeel 100ml": {
                 price: 25.00,
-                description: "HoneyHeel 100ml is a honey-based ointment to treat infections.",
-                fullDescription: "HoneyHeel est un produit à base de miel, de minéraux naturels, de jus d'aloe vera et d'agents naturels qui rallentissent la cristallisation du miel. C'est une crème riche et apaisante qui offre a barrière protectrice sur les blessures mineures et favorise le processus naturel de cicatrisation.",
-                usage: "Les ingrédients de Honeyheel favorisent la formation naturelle de tissus sains. Sa consistance collante l'aide à rester en place, permettant aux agents actifs de rester en contact avec la peau. Peut être utiliser pour traiter la gale de boue, comme écran solaire, pour soigner des blessures mineures, etc. Note : Le miel pourrait se cristalliser, si cela arrive, réchauffer un peu le produit et mélanger.",
+                description: {
+                    en: "HoneyHeel 100ml is a honey-based ointment to treat infections.",
+                    fr: "HoneyHeel 100ml est une pommade à base de miel pour traiter les infections."
+                },
+                fullDescription: {
+                    en: "HoneyHeel is a product based on honey, natural minerals, aloe vera juice and natural agents that slow down the crystallization of honey. It is a rich and soothing cream that provides a protective barrier on minor wounds and promotes the natural healing process.",
+                    fr: "HoneyHeel est un produit à base de miel, de minéraux naturels, de jus d'aloe vera et d'agents naturels qui rallentissent la cristallisation du miel. C'est une crème riche et apaisante qui offre une barrière protectrice sur les blessures mineures et favorise le processus naturel de cicatrisation."
+                },
+                usage: {
+                    en: "HoneyHeel ingredients promote the natural formation of healthy tissues. Its sticky consistency helps it stay in place, allowing the active agents to stay in contact with the skin. Can be used to treat mud fever, as a sunscreen, to heal minor wounds, etc. Note: Honey may crystallize, if this happens, warm the product slightly and mix.",
+                    fr: "Les ingrédients de Honeyheel favorisent la formation naturelle de tissus sains. Sa consistance collante l'aide à rester en place, permettant aux agents actifs de rester en contact avec la peau. Peut être utiliser pour traiter la gale de boue, comme écran solaire, pour soigner des blessures mineures, etc. Note : Le miel pourrait se cristalliser, si cela arrive, réchauffer un peu le produit et mélanger."
+                },
                 image: "images/HoneyHeel.png",
                 category: "treatments"
             },
             "Sole Cleanse 500ml": {
                 price: 30.00,
-                description: "Sole Cleanse 500ml is a cleaning spray for the sole and frog.",
-                fullDescription: "Sole Cleanse est un spray qui nettoie la fourchette et la sole pour réduire et prévenir les mauvaises odeurs et la dégradation des tissus. Son application favorise la croissance de tissus sains.",
-                usage: "Il peut être utiliser hebdomadairement ou à chaque fois que les sabots sont curés pour prévenir la pourriture de fourchette. On peut aussi s'en servir pour nettoyer, désinfecter et vider les fissures et crevasses de la fourchette, de la ligne blanche ou autre avant l'application de Artimud, Hoof-Stuff ou Field Paste.",
+                description: {
+                    en: "Sole Cleanse 500ml is a cleaning spray for the sole and frog.",
+                    fr: "Sole Cleanse 500ml est un spray nettoyant pour la sole et la fourchette."
+                },
+                fullDescription: {
+                    en: "Sole Cleanse is a spray that cleans the frog and sole to reduce and prevent bad odors and tissue degradation. Its application promotes the growth of healthy tissues.",
+                    fr: "Sole Cleanse est un spray qui nettoie la fourchette et la sole pour réduire et prévenir les mauvaises odeurs et la dégradation des tissus. Son application favorise la croissance de tissus sains."
+                },
+                usage: {
+                    en: "It can be used weekly or whenever the hooves are cleaned to prevent frog rot. It can also be used to clean, disinfect and empty cracks and crevices in the frog, white line or elsewhere before applying Artimud, Hoof-Stuff or Field Paste.",
+                    fr: "Il peut être utiliser hebdomadairement ou à chaque fois que les sabots sont curés pour prévenir la pourriture de fourchette. On peut aussi s'en servir pour nettoyer, désinfecter et vider les fissures et crevasses de la fourchette, de la ligne blanche ou autre avant l'application de Artimud, Hoof-Stuff ou Field Paste."
+                },
                 image: "images/SolePaint.png",
                 category: "cleansers"
             },
             "Stronghorn 500ml": {
                 price: 40.00,
-                description: "Stronghorn 500ml strengthens the horn of the hoof.",
-                fullDescription: "Stronghorn est un produit en spray qui nourrit et renforce les tissus et la corne en plus d'être un agent nettoyant très puissant. Aide à diminuer la sensibilité de la sole dans des périodes humides ou celle-ci ce ramollie ou chez des chevaux ayant une sole sensible.",
-                usage: "Vaporiser sur la sole en évitant la fourchette sauf si celle-ci est très molle. Appliquer quotidiennement jusqu'à remarquer une amélioration puis appliquer hebdomadairement par la suite. Pour de meilleurs résultats, laisser sécher avant de sortir le cheval.",
+                description: {
+                    en: "Stronghorn 500ml strengthens the horn of the hoof.",
+                    fr: "Stronghorn 500ml renforce la corne du sabot."
+                },
+                fullDescription: {
+                    en: "Stronghorn is a spray product that nourishes and strengthens tissues and horn in addition to being a very powerful cleaning agent. Helps reduce sole sensitivity in wet periods when it softens or in horses with sensitive soles.",
+                    fr: "Stronghorn est un produit en spray qui nourrit et renforce les tissus et la corne en plus d'être un agent nettoyant très puissant. Aide à diminuer la sensibilité de la sole dans des périodes humides ou celle-ci ce ramollie ou chez des chevaux ayant une sole sensible."
+                },
+                usage: {
+                    en: "Spray on the sole avoiding the frog unless it is very soft. Apply daily until you notice improvement then apply weekly thereafter. For best results, let dry before taking the horse out.",
+                    fr: "Vaporiser sur la sole en évitant la fourchette sauf si celle-ci est très molle. Appliquer quotidiennement jusqu'à remarquer une amélioration puis appliquer hebdomadairement par la suite. Pour de meilleurs résultats, laisser sécher avant de sortir le cheval."
+                },
                 image: "images/20221116_133410 (2).png",
                 category: "treatments"
             },
             "Ear Balm 500ml": {
                 price: 45.00,
-                description: "Ear Balm 500ml is a soothing product for horse ear care.",
-                fullDescription: "Ear Balm est un baume apaisant pour les chevaux qui contient des huiles et beurres naturels qui aident à garder les oreilles et le visage des chevaux hydratés et confortables pendant les mois secs de l'été.",
-                usage: "Il peut être utilisé sur n'importe quelle partie de la peau du cheval pour hydrater et apaiser les irritations. Ne pas l'appliquer trop près des yeux. Appliquer toutes les 24 a 48 heures.",
+                description: {
+                    en: "Ear Balm 500ml is a soothing product for horse ear care.",
+                    fr: "Ear Balm 500ml est un produit apaisant pour les soins des oreilles de cheval."
+                },
+                fullDescription: {
+                    en: "Ear Balm is a soothing balm for horses that contains natural oils and butters that help keep horses' ears and faces hydrated and comfortable during the dry summer months.",
+                    fr: "Ear Balm est un baume apaisant pour les chevaux qui contient des huiles et beurres naturels qui aident à garder les oreilles et le visage des chevaux hydratés et confortables pendant les mois secs de l'été."
+                },
+                usage: {
+                    en: "It can be used on any part of the horse's skin to moisturize and soothe irritations. Do not apply too close to the eyes. Apply every 24 to 48 hours.",
+                    fr: "Il peut être utilisé sur n'importe quelle partie de la peau du cheval pour hydrater et apaiser les irritations. Ne pas l'appliquer trop près des yeux. Appliquer toutes les 24 a 48 heures."
+                },
                 image: "images/Ear Barm 500ml.png",
                 category: "treatments"
             }
@@ -1499,56 +1492,14 @@
         const filterBtns = document.querySelectorAll('.filter-btn');
         const productFilters = document.querySelectorAll('.product-filter');
         const contactForm = document.getElementById('contact-form');
-        const darkModeToggle = document.getElementById('darkModeToggle');
+        const langToggle = document.getElementById('lang-toggle');
+        const langText = document.getElementById('lang-text');
         
         // Initialize the page
         function init() {
             renderProducts();
             setupEventListeners();
             updateCartCount();
-            checkDarkModePreference();
-        }
-        
-        // Load cart from localStorage
-        function loadCart() {
-            const savedCart = localStorage.getItem('cart');
-            if (savedCart) {
-                cart = JSON.parse(savedCart);
-                updateCart();
-            }
-        }
-        
-        // Save cart to localStorage
-        function saveCart() {
-            localStorage.setItem('cart', JSON.stringify(cart));
-        }
-        
-        // Show notification function
-        function showNotification(message, type = 'info') {
-            const container = document.getElementById('notification-container');
-            const notif = document.createElement('div');
-            notif.style.padding = '10px 20px';
-            notif.style.backgroundColor = type === 'error' ? '#e74c3c' : '#2ecc71';
-            notif.style.color = '#fff';
-            notif.style.marginBottom = '10px';
-            notif.style.borderRadius = '5px';
-            notif.style.boxShadow = '0 3px 10px rgba(0,0,0,0.2)';
-            notif.innerText = message;
-            container.appendChild(notif);
-            setTimeout(() => {
-                if (container.contains(notif)) {
-                    container.removeChild(notif);
-                }
-            }, 3000);
-        }
-        
-        // Check dark mode preference
-        function checkDarkModePreference() {
-            const darkMode = localStorage.getItem('darkMode') === 'true';
-            if (darkMode) {
-                document.body.classList.add('dark-mode');
-                darkModeToggle.textContent = '☀️ Light Mode';
-            }
         }
         
         // Render products to the page
@@ -1563,7 +1514,7 @@
                 
                 // Create product image or placeholder
                 const imageHtml = data.image ? 
-                    `<img src="${data.image}" alt="${name}" loading="lazy" onerror="this.parentNode.innerHTML='<div class=\'placeholder-text\'>${name}</div>'">` :
+                    `<img src="${data.image}" alt="${name}" onerror="this.parentNode.innerHTML='<div class=\'placeholder-text\'>${name}</div>'">` :
                     `<div class="placeholder-text">${name}</div>`;
                 
                 productCard.innerHTML = `
@@ -1573,10 +1524,10 @@
                     <div class="product-info">
                         <h3 class="product-title">${name}</h3>
                         <div class="product-price">$${data.price.toFixed(2)}</div>
-                        <p class="product-description">${data.description}</p>
+                        <p class="product-description">${data.description[currentLang]}</p>
                         <div class="product-actions">
-                            <button class="btn add-to-cart" data-name="${name}" data-price="${data.price}">Add to Cart</button>
-                            <button class="btn btn-outline view-details" data-name="${name}">Details</button>
+                            <button class="btn add-to-cart" data-name="${name}" data-price="${data.price}">${currentLang === 'en' ? 'Add to Cart' : 'Ajouter au Panier'}</button>
+                            <button class="btn btn-outline view-details" data-name="${name}">${currentLang === 'en' ? 'Details' : 'Détails'}</button>
                         </div>
                     </div>
                 `;
@@ -1591,7 +1542,7 @@
             
             // Create product image or placeholder for modal
             const imageHtml = product.image ? 
-                `<img src="${product.image}" alt="${name}" loading="lazy" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'placeholder-text\'>${name}</div>'">` :
+                `<img src="${product.image}" alt="${name}" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'placeholder-text\'>${name}</div>'">` :
                 `<div class="placeholder-text">${name}</div>`;
             
             modalContent.innerHTML = `
@@ -1602,14 +1553,14 @@
                     <h2>${name}</h2>
                     <div class="modal-price">$${product.price.toFixed(2)}</div>
                     <div class="modal-description">
-                        <p>${product.fullDescription}</p>
+                        <p>${product.fullDescription[currentLang]}</p>
                     </div>
                     <div class="modal-usage">
-                        <h3>Usage Instructions</h3>
-                        <p>${product.usage}</p>
+                        <h3>${currentLang === 'en' ? 'Usage Instructions' : 'Instructions d\'Utilisation'}</h3>
+                        <p>${product.usage[currentLang]}</p>
                     </div>
                     <div class="modal-actions">
-                        <button class="btn add-to-cart-modal" data-name="${name}" data-price="${product.price}">Add to Cart</button>
+                        <button class="btn add-to-cart-modal" data-name="${name}" data-price="${product.price}">${currentLang === 'en' ? 'Add to Cart' : 'Ajouter au Panier'}</button>
                     </div>
                 </div>
             `;
@@ -1656,6 +1607,13 @@
                 }
             });
             
+            // Language toggle
+            langToggle.addEventListener('click', function() {
+                currentLang = currentLang === 'en' ? 'fr' : 'en';
+                langText.textContent = currentLang === 'en' ? 'FR' : 'EN';
+                updateLanguage();
+            });
+            
             // Add to cart buttons
             document.addEventListener('click', function(e) {
                 if (e.target.classList.contains('add-to-cart')) {
@@ -1673,11 +1631,11 @@
             // Checkout button
             checkoutBtn.addEventListener('click', function() {
                 if (cart.length === 0) {
-                    showNotification('Your cart is empty!', 'error');
+                    alert(currentLang === 'en' ? 'Your cart is empty!' : 'Votre panier est vide!');
                     return;
                 }
                 
-                showNotification('Thank you for your order! This is a demo store.', 'success');
+                alert(currentLang === 'en' ? 'Thank you for your order! This is a demo store, so no actual order was placed.' : 'Merci pour votre commande! Ceci est une boutique de démonstration, donc aucune commande réelle n\'a été passée.');
                 cart = [];
                 updateCart();
                 cartSidebar.classList.remove('active');
@@ -1713,22 +1671,10 @@
             if (contactForm) {
                 contactForm.addEventListener('submit', function(e) {
                     e.preventDefault();
-                    showNotification('Thank you for your message! This is a demo form.', 'success');
+                    alert(currentLang === 'en' ? 'Thank you for your message! This is a demo form.' : 'Merci pour votre message! Ceci est un formulaire de démonstration.');
                     contactForm.reset();
                 });
             }
-            
-            // Dark mode toggle
-            darkModeToggle.addEventListener('click', function() {
-                document.body.classList.toggle('dark-mode');
-                if (document.body.classList.contains('dark-mode')) {
-                    darkModeToggle.textContent = '☀️ Light Mode';
-                    localStorage.setItem('darkMode', 'true');
-                } else {
-                    darkModeToggle.textContent = '🌙 Dark Mode';
-                    localStorage.setItem('darkMode', 'false');
-                }
-            });
         }
         
         // Add product to cart
@@ -1746,7 +1692,9 @@
             }
             
             updateCart();
-            showNotification(`${name} added to cart!`, 'success');
+            
+            // Show confirmation
+            alert(currentLang === 'en' ? `${name} added to cart!` : `${name} ajouté au panier!`);
         }
         
         // Update cart UI
@@ -1763,7 +1711,7 @@
                 
                 // Create product image or placeholder for cart
                 const imageHtml = productData[item.name].image ? 
-                    `<img src="${productData[item.name].image}" alt="${item.name}" loading="lazy" onerror="this.style.display='none'">` :
+                    `<img src="${productData[item.name].image}" alt="${item.name}" onerror="this.style.display='none'">` :
                     '';
                 
                 const cartItem = document.createElement('div');
@@ -1788,13 +1736,11 @@
             });
             
             // Update total
-            cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+            const totalText = currentLang === 'en' ? 'Total' : 'Total';
+            cartTotal.textContent = `${totalText}: $${total.toFixed(2)}`;
             
             // Update cart count
             updateCartCount();
-            
-            // Save cart to localStorage
-            saveCart();
             
             // Add event listeners to quantity buttons
             document.querySelectorAll('.decrease-qty').forEach(btn => {
@@ -1842,9 +1788,40 @@
             cartCount.textContent = count;
         }
         
+        // Update language across the site
+        function updateLanguage() {
+            // Update all elements with data-en and data-fr attributes
+            document.querySelectorAll('[data-en]').forEach(element => {
+                element.textContent = element.getAttribute(`data-${currentLang}`);
+            });
+            
+            // Update filter buttons
+            filterBtns.forEach(btn => {
+                btn.textContent = btn.getAttribute(`data-${currentLang}`);
+            });
+            
+            // Update product buttons
+            document.querySelectorAll('.add-to-cart').forEach(btn => {
+                btn.textContent = currentLang === 'en' ? 'Add to Cart' : 'Ajouter au Panier';
+            });
+            
+            document.querySelectorAll('.view-details').forEach(btn => {
+                btn.textContent = currentLang === 'en' ? 'Details' : 'Détails';
+            });
+            
+            // Update checkout button
+            checkoutBtn.textContent = checkoutBtn.getAttribute(`data-${currentLang}`);
+            
+            // Re-render products to update descriptions
+            const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
+            renderProducts(activeFilter);
+            
+            // Update cart
+            updateCart();
+        }
+        
         // Initialize the application
         init();
-        loadCart();
     </script>
 </body>
 </html>
